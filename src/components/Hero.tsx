@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from '../assets/hero.png';
+import backgroundImage from '/images/hero.jpg';// Ensure this path is correct a nd the file exists
 
 const Hero: React.FC = () => {
   return (
