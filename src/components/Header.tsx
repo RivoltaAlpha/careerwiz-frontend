@@ -9,11 +9,11 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-red-50 ext-cards">
+    <header className="bg-gray-200 text-cards">
       <nav className=" mx-auto px-6 py-2 flex flex-wrap justify-between items-center">
         <div className="text-4xl text-cards flex font-bold">
         {/* <img src="/images/logo.jpg" alt="" className="w-10 h-10 rounded-full" /> */}
-        Code World
+        Career Wiz
         </div>
         <div className="block lg:hidden">
           <button
