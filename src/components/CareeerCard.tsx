@@ -1,45 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { CareerCardProps } from '../types/types';
+import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
-interface CareerCardProps {
-    id: number;
-    courseName: string;
-    description: string;
-    requirements: string[];
-    subjects: string[];
-    interests: string[];
-}
 
-const CareerCard: React.FC<CareerCardProps> = ({ courseName, description, requirements, subjects, interests }) => {
+const CareerCard: React.FC<CareerCardProps> = ({ CareerName, image, description, requirements, subjects, interests }) => {
+    const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated){
+            navigate('/dashboard')
+        } 
+    }, [isAuthenticated,navigate]);
+
+    const handleExplore = () => {
+        navigate('/dashboard')
+    }
+
     return (
-        <div className="career-card">
-            <h2>{courseName}</h2>
-            <p>{description}</p>
-            <div>
-                <h3>Requirements:</h3>
-                <ul>
-                    {requirements.map((requirement, index) => (
-                        <li key={index}>{requirement}</li>
-                    ))}
-                </ul>
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+          <div className="md:flex">
+            <div className="md:flex-shrink-0">
+              <img className="w-[500px] object-cover md-w-full" src={image} alt={CareerName} />
             </div>
-            <div>
-                <h3>Subjects:</h3>
-                <ul>
-                    {subjects.map((subject, index) => (
-                        <li key={index}>{subject}</li>
-                    ))}
-                </ul>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold mb-2">{CareerName}</h2>
+              <p className="text-gray-600 mb-4">{description}</p>
+              <p className="text-gray-600 mb-4">{requirements}</p>
+              <ul>
+                for each subject 
+                <li>{subjects}</li>
+              </ul>
+              <h3>{interests}</h3>
+              <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
+              onClick={handleExplore}>
+                Explore
+              </button>
             </div>
-            <div>
-                <h3>Interests:</h3>
-                <ul>
-                    {interests.map((interest, index) => (
-                        <li key={index}>{interest}</li>
-                    ))}
-                </ul>
-            </div>
+          </div>
         </div>
-    );
+      );
 };
 
 export default CareerCard;
