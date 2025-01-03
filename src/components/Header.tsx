@@ -54,6 +54,14 @@ export const Header = () => {
              px-3 py-2">
               About Us
             </NavLink>
+            <NavLink to="/explore" className="text-cards hover:text-black
+             px-3 py-2">
+              Explore Careers
+            </NavLink>
+            <NavLink to="/feedback" className="text-cards hover:text-black
+             px-3 py-2">
+              Give us Feedback 
+            </NavLink>
             <NavLink to="/login" className="text-cards hover:text-black
              px-3 py-2">
               Login
