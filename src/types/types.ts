@@ -7,3 +7,7 @@ export interface CareerCardProps {
     subjects: string[];
     interests: string[];
 }
+
+export interface Careers {
+    career: CareerCardProps[];
+}
