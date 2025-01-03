@@ -5,18 +5,18 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 
 
-const CareerCard: React.FC<CareerCardProps> = ({ CareerName, image, description, requirements, subjects, interests }) => {
+const CareerCard: React.FC<CareerCardProps> = ({ CareerName, image, interests }) => {
     const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isAuthenticated){
-            navigate('/dashboard')
+            navigate('/career-info/id')
         } 
     }, [isAuthenticated,navigate]);
 
     const handleExplore = () => {
-        navigate('/dashboard')
+        navigate('/career-info/id')
     }
 
     return (
@@ -27,12 +27,6 @@ const CareerCard: React.FC<CareerCardProps> = ({ CareerName, image, description,
             </div>
             <div className="p-8">
               <h2 className="text-2xl font-bold mb-2">{CareerName}</h2>
-              <p className="text-gray-600 mb-4">{description}</p>
-              <p className="text-gray-600 mb-4">{requirements}</p>
-              <ul>
-                for each subject 
-                <li>{subjects}</li>
-              </ul>
               <h3>{interests}</h3>
               <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
               onClick={handleExplore}>
