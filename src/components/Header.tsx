@@ -62,8 +62,7 @@ export const Header = () => {
              px-3 py-2">
               Give us Feedback 
             </NavLink>
-            <NavLink to="/login" className="text-cards hover:text-black
-             px-3 py-2">
+            <NavLink to="/login" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-3 ml-3 lg:w-20 :w-20 rounded mt-3 lg:mt-0  lg:ml-4 items-center">
               Login
             </NavLink>
             <Link to="/register" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 :w-28 rounded mt-3 lg:mt-0  lg:ml-4">
