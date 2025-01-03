@@ -12,8 +12,9 @@ const Hero: React.FC = () => {
       <div className="relative z-10 text-white px-4">
         {/* <h1 className="text-8xl font-bold mb-8">Welcome to Code World</h1> */}
         <p className="max-w-2xl ml-auto mr-auto font-semibold text-xl mb-8">
-          Join us and start learning code today!
-          An easier way to organise and track your projects & collaborate with your team as well as personal progress.
+          Join us and start exploring different Careers available for you, today!
+          <br/>
+          An easier way to identify what career suits you most based on your Academics and Personal Interests.
         </p>
         <a 
           href="/login" 
