@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import loginPic from '/images/hero.jpg';
+import loginPic from "/images/login.png";
 import { Toaster, toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { RootState } from "../app/store";
@@ -9,11 +9,11 @@ import { useSelector } from "react-redux";
 import { setUserData } from "../features/login/loginSlice"; 
 import loginApi from "../features/login/loginAPI"; 
 import Header from "../components/Header";
+import { fetchCsrfToken } from "../Utils/csrf";
 
 type LoginForm = {
   username: string;
   password: string;
-  role: string;
 };
 
 export const Login = () => {
@@ -21,28 +21,43 @@ export const Login = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
   const [loginUser, { isLoading }] = loginApi.useLoginMutation();
-  const [user, setUser] = useState<LoginForm>({
-    username: "",
-    password: "",
-    role: "user",
-  });
+  const [user, setUser] = useState<LoginForm>({ username: "", password: ""});
+  const [csrfToken, setCsrfToken] = useState<string>("");
+
 
   useEffect(() => {
-    if (isAuthenticated && user.role === "user") {
+    if (isAuthenticated) {
         navigate("/dashboard");
       }
-  }, [isAuthenticated, navigate, user.role]);
-
+  }, [isAuthenticated, navigate]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
+  useEffect(() => {
+    const getCsrfToken = async () => {
+      try {
+        const token = await fetchCsrfToken();
+        setCsrfToken(token);
+      } catch (error) {
+        console.error("Failed to fetch CSRF token:", error);
+      }
+    };
+    getCsrfToken();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitting form data:", user); // Debugging step
     try {
-      const response = await loginUser(user).unwrap();
+      const response = await loginUser({
+        ...user,
+        headers: {
+          "X-CSRF-Token": csrfToken,
+        },
+      }).unwrap();
+      dispatch(setUserData(response));
       console.log("Backend response:", response); // Debugging step
 
       dispatch(setUserData({ user: response.user, token: response.token }));
@@ -61,10 +76,7 @@ export const Login = () => {
   return (
 <>
     <Header />
-    <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row items-center justify-center py-12 px-6 lg:px-8"
-    style={{ backgroundImage: `url(${loginPic})` }}
-    >    
-
+    <div className="min-h-screen bg-gray-900 flex flex-col lg:flex-row items-center justify-center py-12 px-6 lg:px-8">
       <Toaster
         toastOptions={{
           classNames: {
@@ -75,10 +87,17 @@ export const Login = () => {
           },
         }}
       />
+      <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-start lg:px-8">
+        <img
+          className="w-full h-auto object-cover lg:h-full"
+          src={loginPic}
+          alt="Welcome"
+        />
+      </div>
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
         <div className="mx-auto w-full lg:w-[600px]">
           <div>
-            <h2 className="mt-6 text-3xl font-bold text-gray-100">
+            <h2 className="mt-6 text-3xl font-bold text-gray-900">
               Welcome Back
             </h2>
           </div>
@@ -131,15 +150,6 @@ export const Login = () => {
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Register
-                </NavLink>
-                </div>
-                <div>
-                Admin?{" "}
-                <NavLink
-                  to="/admin-login"
-                  className="font-medium text-indigo-600  hover:text-indigo-500"
-                >
-                  Login
                 </NavLink>
                 </div>
               </p>
