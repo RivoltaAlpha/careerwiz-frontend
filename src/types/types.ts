@@ -11,3 +11,4 @@ export interface CareerCardProps {
 export interface Careers {
     career: CareerCardProps[];
 }
+
