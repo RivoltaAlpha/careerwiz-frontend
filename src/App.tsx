@@ -26,6 +26,11 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile-edit" element={<ProfileEditPage />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/r" element={<div>Page R</div>} />
+          <Route path="/p" element={<div>Page P</div>} />
+          <Route path="/a" element={<div>Page A</div>} />
+          <Route path="/f" element={<div>Page F</div>} />
         </Routes>
       </div>
       </Router>
