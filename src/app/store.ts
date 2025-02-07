@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { FLUSH,  REHYDRATE,   PAUSE,  PERSIST,  PURGE,  REGISTER,} from "redux-persist";
 import { persistStore, persistReducer,} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { usersAPI } from "../features/users/usersAPI";
 import { registrationAPI } from "../features/register/register";
 import { loginApi } from "../features/login/loginAPI";
+import { careersApi } from "../features/careers/careersAPI";
+import { academicsAPI } from "../features/Academics/academicsAPI";
 import UserAuthReducer from "../features/login/loginSlice";
 import userReducer from "../features/users/userSlice";
-
+import careerReducer from "../features/careers/careersSlice";
+import academicsReducer from "../features/Academics/academicsSlice";
 
 
 const persistConfig = {
@@ -17,16 +19,21 @@ const persistConfig = {
   blacklist: [
     usersAPI.reducerPath,
     registrationAPI.reducerPath,
-    loginApi.reducerPath  ],
+    loginApi.reducerPath  ,
+    careersApi.reducerPath],
   whitelist: [loginApi.reducerPath],
 };
 
 const rootReducer = combineReducers({
     userAuth: UserAuthReducer,
-    [usersAPI.reducerPath]: usersAPI.reducer,
     user: userReducer,
-  [registrationAPI.reducerPath]: registrationAPI.reducer,
-  [loginApi.reducerPath]: loginApi.reducer,
+    career: careerReducer,
+    academics: academicsReducer,
+    [usersAPI.reducerPath]: usersAPI.reducer,
+    [registrationAPI.reducerPath]: registrationAPI.reducer,
+    [loginApi.reducerPath]: loginApi.reducer,
+    [careersApi.reducerPath]: careersApi.reducer,
+    [academicsAPI.reducerPath]: academicsAPI.reducer,
   // Add other reducers here
 });
 
@@ -37,12 +44,21 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [
+          "persist/PERSIST",
+          "persist/REHYDRATE",
+          "persist/PAUSE",
+          "persist/PURGE",
+          "persist/FLUSH",
+          "persist/REGISTER",
+        ],
       },
     }).concat(
       usersAPI.middleware,
       registrationAPI.middleware,
-      loginApi.middleware
+      loginApi.middleware,
+      careersApi.middleware,
+      academicsAPI.middleware
       // Add other middleware here
     ),
 });
