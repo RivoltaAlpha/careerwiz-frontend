@@ -1,19 +1,19 @@
 export interface CareerCardProps {
     career_id: number;
     image: string   ;
-    CareerName: string;
+    career_name: string;
     description: string;
-    requirements: string[];
-    subjects: string[];
-    interests: string[];
+    requirements: string;
+    subjects: string;
+    interests: string;
 }
 export interface Career {
     career_id: number;
-    CareerName: string;
+    career_name: string;
     description: string;
-    requirements: string[];
-    subjects: string[];
-    interests: string[];
+    requirements: string;
+    subjects: string;
+    interests: string;
 }
   // Login Response
   export interface LoginResponse {
@@ -34,21 +34,28 @@ export interface Careers {
 
   // create User
   export interface TUser {
-    user_id: number;
+    student_id: number;
+    firstname: string;
+    lastname: string;
     username: string;
-    email: string;
     password: string;
+    email: string;
+    contact: string;
+    school: string;
     role: string;
-    image_url: string;
 }
 
 export interface UserAuthenticatedState {
     user:{
-        user_id: number
-        username: string
-        email: string
-        role: string
-        image_url: string
+      student_id: number;
+      firstname: string;
+      lastname: string;
+      username: string;
+      password: string;
+      email: string;
+      contact: string;
+      school: string;
+      role: string;
     } | null
     token: string | null
     isAuthenticated: boolean
@@ -61,3 +68,44 @@ export interface UserAuthenticatedState {
     loading: boolean;
     error: string | null;
   }
+export interface  AcademicCardProps{
+  academic_id: number;
+  student_id: number;
+  subject_id: number;
+  grade: string;
+  subject_score: number;
+  year: number;
+}
+
+export interface Academics {
+  academic_id: number;
+  student_id: number;
+  subject_id: number;
+  grade: string;
+  subject_score: number;
+  year: number;
+}
+
+export interface Recommendations {
+  recommendations_id: number;
+  student_id: number;
+  student_recommendations: string;
+}
+
+export interface Interests {
+  interest_id: number;
+  name: string;
+}
+
+export interface Feedback {
+  feedback_id: number;
+  student_id: number;
+  message: string;
+  name: string;
+  email: string;
+}
+
+export interface Subject {
+  subject_id: number;
+  subject_name: string;
+}
