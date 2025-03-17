@@ -10,6 +10,7 @@ import './index.css'
 import Dashboard from './dashboard/Dashboard';
 import ProfileEditPage from './dashboard/profileUpdate';
 import AboutUs from './pages/About';
+import UserFeedback from './dashboard/UserFeedback';
 
 function App() {
 
@@ -29,10 +30,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile-edit" element={<ProfileEditPage />} />
           <Route path="/" element={<Dashboard />} />
+          <Route path="/user-feedback" element={<UserFeedback />} />
           <Route path="/r" element={<div>Page R</div>} />
           <Route path="/p" element={<div>Page P</div>} />
           <Route path="/a" element={<div>Page A</div>} />
           <Route path="/f" element={<div>Page F</div>} />
+
         </Routes>
       </div>
       </Router>
