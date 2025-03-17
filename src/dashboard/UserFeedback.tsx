@@ -1,12 +1,11 @@
 import React from 'react';
+import Sidebar from '../components/Sidebar';
 
-const Feedback: React.FC = () => {
+const UserFeedback: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row h-screen p-4 gap-4">
+    <div className="flex flex-col md:flex-row h-3/4 p-4 gap-4">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-gray-100 p-4 rounded-2xl shadow-md">
-        <h2 className="text-lg font-semibold">Sidebar</h2>
-      </aside>
+      < Sidebar />
 
       {/* Main Content */}
       <main className="w-full md:w-3/4 bg-white p-6 rounded-2xl shadow-md">
@@ -43,4 +42,4 @@ const Feedback: React.FC = () => {
   );
 };
 
-export default Feedback;
+export default UserFeedback;
