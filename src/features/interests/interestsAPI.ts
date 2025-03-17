@@ -41,10 +41,4 @@ export const InterestsApi = createApi({
 });
 
 export default InterestsApi;
-export const {
-  useGetInterestsQuery,
-  useGetInterestQuery,
-  useCreateInterestMutation,
-  useUpdateInterestMutation,
-  useDeleteInterestMutation,
-} = InterestsApi;
+
