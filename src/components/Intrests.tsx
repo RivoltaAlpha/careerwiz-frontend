@@ -1,7 +1,7 @@
-import { useGetInterestsQuery } from "../store/api/apiSlice";
+import { InterestsApi } from "../features/interests/interestsAPI";
 
 const Interests = () => {
-  const { data, error, isLoading } = useGetInterestsQuery();
+  const { data, error, isLoading } = InterestsApi.useGetInterestsQuery();
 
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Failed to load data.</p>;
