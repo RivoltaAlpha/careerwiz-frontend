@@ -2,29 +2,75 @@ import Header from "../components/Header";
 
 export default function Feedback() {
     return (
-        <div className="bg-gray-100 text-black">
+        <div className="bg-gray-100 text-black ">
             <Header />
-            <div className="mx-auto max-w-7xl px-4 text-neutral-content-200">
-                {/* Hero Map */}
+            <div className="mx-auto max-w-7xl px-4 flex flex-col items-center justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl w-full px-4 py-10">
+                    {/* Chat to support */}
+                    <div className="bg-white shadow-xl rounded-2xl p-12 flex flex-col items-center text-center  transition-transform hover:scale-105">
+                        <div className="bg-gray-100 mb-10 rounded-full p-3">
+                        <i className="text-lg text-gray-600">💬</i>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 mb-2">
+                        Chat to support
+                        </h3>
+                        <p className="text-sm font-semibold text-gray-600 mb-4">We’re here to help</p>
+                        <a
+                        href="/contact"
+                        className="text-blue-500 text-sm font-medium"
+                        >
+                        support@CareerWiz.com
+                        </a>
+                    </div>
+
+                    {/* Visit Us */}
+                    <div className="bg-white shadow-lg rounded-2xl p-12 flex flex-col items-center text-center  transition-transform hover:scale-105">
+                        <div className="bg-gray-100 rounded-full p-3 mb-10">
+                        <i className="text-lg text-gray-600">📍</i>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 mb-2">Visit Us</h3>
+                        <p className="text-sm font-semibold text-gray-600 mb-4">
+                        Visit our office HQ
+                        </p>
+                        <a
+                        href="https://www.google.com/maps"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 text-sm font-medium"
+                        >
+                        View on Google map
+                        </a>
+                    </div>
+
+                    {/* Call Us */}
+                    <div className="bg-white shadow-lg rounded-2xl p-12 flex flex-col items-center text-center  transition-transform hover:scale-105">
+                        <div className="bg-gray-100 rounded-full p-3 mb-10">
+                        <i className="text-lg text-gray-600">📞</i>
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800 mb-2">Call Us</h3>
+                        <p className="text-sm font-semibold text-gray-600 mb-4">
+                        Mon-Fri from 8am to 5pm
+                        </p>
+                        <a
+                        href="tel:+254123456789"
+                        className="text-blue-500 text-sm font-medium"
+                        >
+                        +254 123 456 789
+                        </a>
+                    </div>
+                </div>
+
                 <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
                     <p className="text-center text-3xl font-bold content md:text-5xl md:leading-10">
                         Share your feedback with us...
                     </p>
                 </div>
-                <div className="mx-auto max-w-7xl py-12 md:py-24">
-                    <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
-                        <img
-                            alt="Contact us"
-                            className="lg:max-h-full sm: sm:block w-full rounded-lg object-cover lg:block"
-                            src="https://i.postimg.cc/G2wKbbZw/contact.png"
-                        />
-                        <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center mb-10">
                             <div className="px-2 md:px-12">
-                                <p className="text-2xl font-bold text-base-content-100 md:text-4xl">Get in touch</p>
                                 <p className="mt-4 text-lg ">
                                     Our friendly team would love to hear from you on how to improve our services.
                                 </p>
-                                <form action="" className="mt-8 space-y-8 h-screen">
+                                <form action="" className="mt-8 space-y-8 h-full">
                                     <div className="grid w-full gap-y-4">
                                         <div className="grid w-full  items-center gap-1.5">
                                             <label
@@ -90,11 +136,7 @@ export default function Feedback() {
                                 </form>
                             </div>
                         </div>
-
-                    </div>
-                </div>
             </div>
-            <hr className="mt-6" />
         </div>
     );
 }  
