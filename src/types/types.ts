@@ -5,7 +5,7 @@ export interface CareerCardProps {
     description: string;
     requirements: string;
     subjects: string;
-    interests: string;
+    interests: string[];
 }
 export interface Career {
     career_id: number;
@@ -13,12 +13,15 @@ export interface Career {
     description: string;
     requirements: string;
     subjects: string;
-    interests: string;
+    interests: string[];
 }
   // Login Response
   export interface LoginResponse {
     username: string;
     password: string;    
+    headers: {
+      "X-CSRF-Token": string;
+    };
 }
 
   // Login User
@@ -34,6 +37,7 @@ export interface Careers {
 
   // create User
   export interface TUser {
+    user_id: number;
     student_id: number;
     firstname: string;
     lastname: string;
@@ -47,6 +51,7 @@ export interface Careers {
 
 export interface UserAuthenticatedState {
     user:{
+      user_id: number;
       student_id: number;
       firstname: string;
       lastname: string;
