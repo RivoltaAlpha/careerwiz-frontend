@@ -1,4 +1,3 @@
-import Header from '../components/Header';
 import { Link } from "react-router-dom";
 import Academics from '../components/Academics';
 import Interests from '../components/Intrests';
@@ -7,12 +6,9 @@ import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
-      < Header />
-      <div className="flex justify-between w-full max-w-4xl">
-        <h1 className="text-xl font-semibold">Explore Careers</h1>
-      </div>
-
+    <div className="flex flex-row gap-40 items-center min-h-screen">
+      < Sidebar />
+    <div className="flex flex-col items-center justify-center p-4">
       {/* Navigation Buttons */}
       <div className="flex gap-4 mt-4">
         {["R", "P", "A", "F"].map((letter) => (
@@ -41,6 +37,7 @@ const Dashboard = () => {
       <div className="w-full max-w-4xl flex justify-end mt-6">
         <p className="text-gray-500 cursor-pointer hover:text-gray-700">Feedback?</p>
       </div>
+    </div>
     </div>
   );
 };
