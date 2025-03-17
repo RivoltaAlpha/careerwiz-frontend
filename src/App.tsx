@@ -9,18 +9,20 @@ import Profile from './dashboard/Profile';
 import './index.css'
 import Dashboard from './dashboard/Dashboard';
 import ProfileEditPage from './dashboard/profileUpdate';
+import AboutUs from './pages/About';
 
 function App() {
 
   return (
     <>
       <Router>
-      <div className="flex flex-col text-white bg-gray-100">
+      <div className="flex flex-col text-black bg-gray-100">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/explore" element={<Register />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/dashboard" element={<Dashboard />} />
