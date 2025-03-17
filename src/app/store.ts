@@ -7,6 +7,7 @@ import { registrationAPI } from "../features/register/register";
 import { loginApi } from "../features/login/loginAPI";
 import { careersApi } from "../features/careers/careersAPI";
 import { academicsAPI } from "../features/Academics/academicsAPI";
+import { InterestsApi } from "../features/interests/interestsAPI";
 import UserAuthReducer from "../features/login/loginSlice";
 import userReducer from "../features/users/userSlice";
 import careerReducer from "../features/careers/careersSlice";
@@ -20,6 +21,9 @@ const persistConfig = {
     usersAPI.reducerPath,
     registrationAPI.reducerPath,
     loginApi.reducerPath  ,
+    careersApi.reducerPath,
+    academicsAPI.reducerPath,
+    InterestsApi.reducerPath,
     careersApi.reducerPath],
   whitelist: [loginApi.reducerPath],
 };
@@ -34,6 +38,7 @@ const rootReducer = combineReducers({
     [loginApi.reducerPath]: loginApi.reducer,
     [careersApi.reducerPath]: careersApi.reducer,
     [academicsAPI.reducerPath]: academicsAPI.reducer,
+    [InterestsApi.reducerPath]: InterestsApi.reducer,
   // Add other reducers here
 });
 
@@ -58,7 +63,8 @@ const store = configureStore({
       registrationAPI.middleware,
       loginApi.middleware,
       careersApi.middleware,
-      academicsAPI.middleware
+      academicsAPI.middleware,
+      InterestsApi.middleware
       // Add other middleware here
     ),
 });
