@@ -5,7 +5,7 @@ import Main from "../components/Main";
 
 const Landing = () => {
     return (
-    <div className="flex flex-col bg-gray-900 min-h-screen">
+    <div className="flex flex-col bg-gray-50 min-h-screen">
         <main className="flex-grow">
             <Header />
             <Hero />
