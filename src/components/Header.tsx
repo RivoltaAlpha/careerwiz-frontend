@@ -20,6 +20,7 @@ export const Header = () => {
             onClick={toggleMenu}
             className="text-cards hover:text-black
              focus:outline-none focus:text-white"
+            title="Toggle Menu"
           >
             <svg
               className="h-6 w-6 fill-current"
