@@ -11,10 +11,13 @@ import { FaLaptopCode } from 'react-icons/fa';
 const Sidebar: React.FC = () => {
     const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
     const user = useSelector((state: RootState) => state.user.user);
+    const userId = user?.user_id;
    const [isOpen, setIsOpen] = useState(false);
+   
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +35,7 @@ const Sidebar: React.FC = () => {
           </li>
           <li className='flex items-center'>
           <FaLaptopCode />
-            <Link to={`/projects/${user?.user_id}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Academics</Link>
+            <Link to={`/projects/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Academics</Link>
           </li>
           <li className='flex items-center'>
             <MdFormatListBulletedAdd />
@@ -40,11 +43,11 @@ const Sidebar: React.FC = () => {
           </li>
           <li className='flex items-center'>
             <MdOutlineHotelClass />
-            <Link to={`/user-tasks/${user?.user_id}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Recommendations</Link>
+            <Link to={`/user-tasks/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Recommendations</Link>
           </li>
           <li className='flex items-center'>
             <FaSquarePollVertical />
-            <Link to="/report" className="hover:underline text-white hover:bg-gray-900 rounded p-2">Feedback</Link>
+            <Link to="/user-feedback" className="hover:underline text-white hover:bg-gray-900 rounded p-2">Feedback</Link>
           </li>
           <li className='flex items-center'>
             <RiAccountPinCircleFill />
