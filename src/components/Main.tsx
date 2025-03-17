@@ -6,13 +6,13 @@ import { RiTeamFill } from 'react-icons/ri';
 
 const Main: React.FC = () => {
   return (
-    <div className="py-12 bg-gray-900 text-gray-100">
+    <div className="py-12 bg-gray-50 text-white">
       <div className="max-w-8xl mx-auto my-10 px-4 sm:px-6 lg:px-8">
 
 
         <div className="my-10 text-center">
-          <h2 className="text-3xl font-semibold">Why Choose a Career here?</h2>
-          <p className="mt-4 text-lg text-gray-300">
+          <h2 className="text-3xl font-semibold text-black">Why Choose a Career here?</h2>
+          <p className="mt-4 text-lg text-black">
             We offer a wide range of benefits and opportunities to help you grow and succeed in your career.
           </p>
 

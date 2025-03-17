@@ -65,7 +65,7 @@ const ContactSection: React.FC = () => {
     return (
         <div className='flex flex-col bg-gray-900 min-h-screen'>
             <Header />
-            <section id='contact' className="bg-gray-200 text-white py-12 flex items-center justify-center">.
+            <section id='contact' className="bg-gray-50 text-white py-12 flex items-center justify-center">.
 
                 <ToastContainer />
                 <div className="container mx-auto px-6">
