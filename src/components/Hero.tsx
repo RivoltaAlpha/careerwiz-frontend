@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
           An easier way to identify what career suits you most based on your Academics and Personal Interests.
         </p>
         <a 
-          href="/login" 
+          href="/predictions" 
           className="bg-cards hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
         >
           Get Started
