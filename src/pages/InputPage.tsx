@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
-const subjectsList = ["English","Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology", "History","Geography", "Physics"," Art and Design", "Music", "Business Studies"];
+const subjectsList = ["English","Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology", "History","Geography", "Physics"," Art and Design", "Music", "Business Studies","French", "German", "Agriculture", "Home science"];
 const gradesList = ["A","A-","B+","B","B-","C+","C","C-","D+","D","D-","E"];
 
 const InputPage = () => {
