@@ -54,7 +54,7 @@ export  const ProfileEditPage = () => {
                 name="udername"
                 value={formData.username}
                 onChange={handleChange}
-                placeholder="Last Name"
+                placeholder="username "
                 className="w-full p-2 border rounded"
               />
               <input
