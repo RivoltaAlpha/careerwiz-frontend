@@ -3,11 +3,8 @@ import CareerCard from "../components/CareeerCard";
 import { useGetCareersQuery } from "../features/careers/careersAPI";
 import { SyncLoader } from "react-spinners";
 
-
-
 const Explore: React.FC = () => {
     const { data: careers, error, isLoading } = useGetCareersQuery();
-  // Loading state with spinner
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-64">
