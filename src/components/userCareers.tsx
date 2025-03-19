@@ -11,7 +11,8 @@ import { NavLink } from 'react-router-dom';
 const userCareers: React.FC<{ career: Career }> = () => {
   const user = useSelector((state: RootState) => state.userAuth.user) as TUser;
   const userId = user?.user_id;
-  const { data: careers = [], isLoading, isError } = careersAPI.useGetCareerQuery(userId);
+  const { data: careersData, isLoading, isError } = careersAPI.useGetCareerQuery(userId);
+  const careers = Array.isArray(careersData) ? careersData : [];
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -43,7 +44,7 @@ const userCareers: React.FC<{ career: Career }> = () => {
           className="bg-primary shadow-lg rounded-lg p-6 transition transform hover:scale-105 duration-300 ease-in-out"
         >
           <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-            {career.CareerName}
+            {career.career_name}
           </h3>
           <p className="text-gray-900 mb-4">
             <strong>Description:</strong> {career.description}
