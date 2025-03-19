@@ -1,5 +1,4 @@
 import React from "react";
-import { Careers } from "../types/types";
 import CareerCard from "../components/CareeerCard";
 import { useGetCareersQuery } from "../features/careers/careersAPI";
 import { SyncLoader } from "react-spinners";
@@ -26,13 +25,16 @@ const Explore: React.FC = () => {
     <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Explore Careers</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {careers.map((career) => (
+        {careers && careers.map((career) => (
           <CareerCard 
-            key={career.career.career_id} 
+            key={career.career_id} 
             career_id={career.career_id} 
-            image={career.image} 
-            CareerName={career.CareerName} 
+            career_name={career.career_name} 
             description={career.description} 
+            image={career.image}
+            requirements={career.requirements}
+            subjects={career.subjects}
+            interests={career.interests}
           />
         ))}
       </div>
