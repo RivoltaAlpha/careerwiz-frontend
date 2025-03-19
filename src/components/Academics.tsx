@@ -13,7 +13,7 @@ const userId = JSON.parse(localStorage.getItem("user") || "{}").user_id;
       {data?.length ? (
         <ul className="list-disc pl-4">
           {data.map((item, index) => (
-            <li key={index}>{item.AcademicName}</li>
+            <li key={index}>{item.academic_id}</li>
           ))}
         </ul>
       ) : (

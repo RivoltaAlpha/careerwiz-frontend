@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Academics } from "../../types/types";
 
-interface AcademicsState {
+export interface AcademicsState {
   selectedAcademic: Academics | null;
   academic: Academics | null;
 }

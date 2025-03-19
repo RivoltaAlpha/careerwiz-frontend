@@ -12,7 +12,6 @@ export  const ProfileEditPage = () => {
     id: user?.user_id || 0,
     username: user?.username || '',
     email: user?.email || '',
-    image_url: user?.image_url || '',
   });
 
   const dispatch = useDispatch();
@@ -48,13 +47,6 @@ export  const ProfileEditPage = () => {
     <div className="max-w-2xl mx-auto p-8">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-6">
-          <div className="flex items-center justify-center mb-6">
-          <img 
-                            src={formData.image_url}
-                            alt="User Profile" 
-                            className="w-32 h-32 rouunded-full object-cover"
-                        />
-          </div>
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <input

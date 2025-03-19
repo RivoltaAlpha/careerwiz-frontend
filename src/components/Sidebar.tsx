@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../app/store';
@@ -12,11 +12,11 @@ const Sidebar: React.FC = () => {
     const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
     const user = useSelector((state: RootState) => state.user.user);
     const userId = user?.user_id;
-   const [isOpen, setIsOpen] = useState(false);
+  //  const [isOpen, setIsOpen] = useState(false);
    
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

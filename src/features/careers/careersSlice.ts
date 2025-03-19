@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Career } from "../../types/types";
 
-interface CareerState {
+export interface CareerState {
   selectedCareer: Career | null;
   career: Career | null;
 }
