@@ -11,15 +11,19 @@ import Dashboard from './dashboard/Dashboard';
 import ProfileEditPage from './dashboard/profileUpdate';
 import AboutUs from './pages/About';
 import UserFeedback from './dashboard/UserFeedback';
+import InputPage from './pages/InputPage';
+import OutputPage from './pages/OutputPage';
 
 function App() {
 
   return (
     <>
       <Router>
-      <div className="flex flex-col text-black bg-gray-100">
+      <div className="flex flex-col text-black bg-white">
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/predictions" element={<InputPage />} />
+          <Route path="/recommendations" element={<OutputPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/explore" element={<Register />} />
