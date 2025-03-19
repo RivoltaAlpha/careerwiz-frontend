@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const subjectsList = ["English","Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology", "History","Geography", "Physics"," Art and Design", "Music", "Business Studies"];
 const gradesList = ["A","A-","B+","B","B-","C+","C","C-","D+","D","D-","E"];
@@ -9,6 +10,8 @@ const gradesList = ["A","A-","B+","B","B-","C+","C","C-","D+","D","D-","E"];
 const InputPage = () => {
   const [subjects, setSubjects] = useState([{ subject: "", grade: "" }]);
   const [interests, setInterests] = useState([""]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   // Handle Subject & Grade Selection
   const handleSubjectChange = (index: number, value: string) => {
@@ -39,13 +42,15 @@ const InputPage = () => {
     return subjects
       .filter((s) => s.subject && s.grade)
       .sort((a, b) => gradesList.indexOf(a.grade) - gradesList.indexOf(b.grade))
-      .slice(0, 4)
+      .slice(0, 6)
       .map((s) => s.subject);
   };
   
   const navigate = useNavigate();
   // Submit Data to API
   const handleSubmit = async () => {
+    setIsLoading(true); // Show loader
+
     const topSubjects = getTopSubjects();
     const payload = { subjects: topSubjects, interests };
 
@@ -53,11 +58,17 @@ const InputPage = () => {
       const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", payload);
       console.log("Success:", response.data);
       if (response.status === 200) {
-        navigate("/recommendations");
         localStorage.setItem("recommendations", JSON.stringify(response.data));
+        // set timeout and loader 
+        setTimeout(() => {
+          setIsLoading(false);
+        navigate("/recommendations");
+        }
+        , 2000);
       }
     } catch (error) {
       console.error("Error submitting:", error);
+      setIsLoading(false);
     }
   };
 
@@ -65,6 +76,7 @@ const InputPage = () => {
     <>
         <Header />
         <div className="max-w-8xl mx-20 p-6 h-screen">
+
       {/* Interests Section */}
       <div className="shadow-2xl p-4 rounded-lg bg-gray-50 mb-10 hover:translate-x-6 ">
         <h2 className="text-3xl font-semibold text-center mb-2">Interests</h2>
@@ -175,11 +187,17 @@ const InputPage = () => {
           + Add Subject
         </button>
       </div>
-
-      {/* Submit Button */}
+      {isLoading ? (
+        <div className="mt-6 flex justify-center items-center">
+        <div className="absolute inset-0 bg-gray-900 opacity-50 z-50 pointer-events-none"></div>
+        <ClipLoader color="cards" size={35} />
+        <p className="ml-3 text-lg">Processing your recommendations...</p>
+      </div>
+        ):(
       <button type="button" onClick={handleSubmit} className="mt-6 w-3/4 p-2 bg-cards text-white font-bold rounded lg:ml-[12%]">
         Submit
       </button>
+      )}
     </div>
           </>
   );
