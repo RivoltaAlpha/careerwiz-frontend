@@ -9,6 +9,7 @@ export interface CareerCardProps {
 }
 export interface Career {
     career_id: number;
+    image: string;
     career_name: string;
     description: string;
     requirements: string;
