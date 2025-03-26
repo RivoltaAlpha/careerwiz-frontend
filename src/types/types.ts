@@ -95,7 +95,7 @@ export interface Academics {
 export interface Recommendations {
   recommendations_id: number;
   student_id: number;
-  student_recommendations: string;
+  student_recommendations: string[];
 }
 
 export interface Interests {
@@ -109,7 +109,7 @@ export interface Feedback {
   message: string;
   name: string;
   email: string;
-  contact: number;
+  contact: string;
   recommendation:number;
 }
 
