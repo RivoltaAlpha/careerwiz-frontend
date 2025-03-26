@@ -13,6 +13,8 @@ import AboutUs from './pages/About';
 import UserFeedback from './dashboard/UserFeedback';
 import InputPage from './pages/InputPage';
 import OutputPage from './pages/OutputPage';
+import StudentAcademics from './dashboard/Academics';
+import PersonalInterests from './dashboard/Personal_interests';
 
 function App() {
 
@@ -30,15 +32,24 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<ContactSection />} />
+
+          {/* User Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/academics/:id" element={<StudentAcademics />} />
+          <Route path="/student-interests/:id" element={<PersonalInterests />} />
+          {/* 
+          <Route path="/student-recommendations" element={<Recommendations />} />
+          <Route path="/career-cart" element={<CareerCart />} /> 
+          */}
+          <Route path="/user-feedback" element={<UserFeedback />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile-edit" element={<ProfileEditPage />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/user-feedback" element={<UserFeedback />} />
-          <Route path="/r" element={<div>Page R</div>} />
-          <Route path="/p" element={<div>Page P</div>} />
-          <Route path="/a" element={<div>Page A</div>} />
-          <Route path="/f" element={<div>Page F</div>} />
+          
+          {/* Icon routes */}
+          <Route path="/student-recommendations" element={<div>Page R</div>} />
+          <Route path="/profile" element={<div>Page P</div>} />
+          <Route path="/academics" element={<div>Page A</div>} />
+          <Route path="/feedback" element={<div>Page F</div>} />
 
         </Routes>
       </div>

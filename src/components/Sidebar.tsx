@@ -35,19 +35,23 @@ const Sidebar: React.FC = () => {
           </li>
           <li className='flex items-center'>
           <FaLaptopCode />
-            <Link to={`/projects/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Academics</Link>
+            <Link to={`/academics/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Academics</Link>
           </li>
           <li className='flex items-center'>
             <MdFormatListBulletedAdd />
-            <Link to="/create-project" className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Career Interests</Link>
+            <Link to={`/career-cart/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Career Interests</Link>
+          </li>
+          <li className='flex items-center'>
+            <MdFormatListBulletedAdd />
+            <Link to={`/student-interests/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Personal Interests</Link>
           </li>
           <li className='flex items-center'>
             <MdOutlineHotelClass />
-            <Link to={`/user-tasks/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Recommendations</Link>
+            <Link to={`/student-recommendations/${userId}`} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Recommendations</Link>
           </li>
           <li className='flex items-center'>
             <FaSquarePollVertical />
-            <Link to="/user-feedback" className="hover:underline text-white hover:bg-gray-900 rounded p-2">Feedback</Link>
+            <Link to={`/user-feedback/${userId}`} className="hover:underline text-white hover:bg-gray-900 rounded p-2">Feedback</Link>
           </li>
           <li className='flex items-center'>
             <RiAccountPinCircleFill />
@@ -58,7 +62,7 @@ const Sidebar: React.FC = () => {
         {isAuthenticated && (
           <div className='flex items-center ml-6'>
           <RiLogoutCircleFill />
-            <button onClick={handleLogout} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Logout</button>
+            <button type="button" onClick={handleLogout} className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Logout</button>
           </div>
         )}
       </nav>
