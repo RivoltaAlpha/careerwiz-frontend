@@ -8,6 +8,10 @@ import { loginApi } from "../features/login/loginAPI";
 import { careersApi } from "../features/careers/careersAPI";
 import { academicsAPI } from "../features/Academics/academicsAPI";
 import { InterestsApi } from "../features/interests/interestsAPI";
+import { personalInterestsAPI } from "../features/personalInterests/personalInterestsAPI";
+import { FeedbackAPI } from "../features/Feedback/feedbackAPI";
+import { careerInterestsAPI } from "../features/careerInterests/careerInterestsAPI";
+import { recommendationsAPI } from "../features/recommendations/recommendationsAPI";
 import UserAuthReducer from "../features/login/loginSlice";
 import userReducer from "../features/users/userSlice";
 import careerReducer from "../features/careers/careersSlice";
@@ -17,15 +21,15 @@ import academicsReducer from "../features/Academics/academicsSlice";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: [
-    usersAPI.reducerPath,
-    registrationAPI.reducerPath,
-    loginApi.reducerPath  ,
-    careersApi.reducerPath,
-    academicsAPI.reducerPath,
-    InterestsApi.reducerPath,
-    careersApi.reducerPath],
-  whitelist: [loginApi.reducerPath],
+  // blacklist: [
+  //   usersAPI.reducerPath,
+  //   registrationAPI.reducerPath,
+  //   loginApi.reducerPath  ,
+  //   careersApi.reducerPath,
+  //   academicsAPI.reducerPath,
+  //   InterestsApi.reducerPath,
+  //   careersApi.reducerPath],
+  // whitelist: [loginApi.reducerPath],
 };
 
 const rootReducer = combineReducers({
@@ -39,6 +43,10 @@ const rootReducer = combineReducers({
     [careersApi.reducerPath]: careersApi.reducer,
     [academicsAPI.reducerPath]: academicsAPI.reducer,
     [InterestsApi.reducerPath]: InterestsApi.reducer,
+    [personalInterestsAPI.reducerPath]: personalInterestsAPI.reducer,
+    [FeedbackAPI.reducerPath]: FeedbackAPI.reducer,
+    [careerInterestsAPI.reducerPath]: careerInterestsAPI.reducer,
+    [recommendationsAPI.reducerPath]: recommendationsAPI.reducer
   // Add other reducers here
 });
 
@@ -64,7 +72,11 @@ const store = configureStore({
       loginApi.middleware,
       careersApi.middleware,
       academicsAPI.middleware,
-      InterestsApi.middleware
+      InterestsApi.middleware,
+      FeedbackAPI.middleware,
+      personalInterestsAPI.middleware,
+      careerInterestsAPI.middleware,
+      recommendationsAPI.middleware,
       // Add other middleware here
     ),
 });
