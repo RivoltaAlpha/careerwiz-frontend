@@ -109,9 +109,32 @@ export interface Feedback {
   message: string;
   name: string;
   email: string;
+  contact: number;
+  recommendation:number;
 }
 
 export interface Subject {
   subject_id: number;
   subject_name: string;
+}
+
+export interface CareerInterests{
+  careerInterests_id: string;
+  student_id: number;
+  career_id:number;
+  Career:{
+    career_id: number;
+    image: string;
+    career_name: string;
+    description: string;
+    requirements: string;
+    subjects: string;
+    interests: string[];
+  }
+}
+
+export interface PersonalInterests{
+  id: number;
+  student_id: number;
+  personal_interests: string[];
 }
