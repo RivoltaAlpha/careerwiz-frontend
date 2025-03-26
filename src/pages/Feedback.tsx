@@ -1,6 +1,10 @@
 import Header from "../components/Header";
 
 export default function Feedback() {
+    const handleSubmit = () => {
+
+    }
+
     return (
         <div className="bg-gray-100 text-black ">
             <Header />
@@ -70,7 +74,7 @@ export default function Feedback() {
                                 <p className="mt-4 text-lg ">
                                     Our friendly team would love to hear from you on how to improve our services.
                                 </p>
-                                <form action="" className="mt-8 space-y-8 h-full">
+                                <form onSubmit={handleSubmit} className="mt-8 space-y-8 h-full">
                                     <div className="grid w-full gap-y-4">
                                         <div className="grid w-full  items-center gap-1.5">
                                             <label
