@@ -53,8 +53,7 @@ export default function Register() {
     return (
         <>
             <Header />
-            <div
-                className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-6"
+            <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-6"
                 style={{ backgroundImage: `url(${RegPic})` }}
             >
                 {/* Overlay */}
