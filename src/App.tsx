@@ -5,8 +5,6 @@ import Register from './pages/Register';
 import Feedback from './pages/Feedback';
 import ContactSection from './pages/ContactUs';
 import Profile from './dashboard/Profile';
-
-import './index.css'
 import Dashboard from './dashboard/Dashboard';
 import ProfileEditPage from './dashboard/profileUpdate';
 import AboutUs from './pages/About';
@@ -15,6 +13,8 @@ import InputPage from './pages/InputPage';
 import OutputPage from './pages/OutputPage';
 import StudentAcademics from './dashboard/Academics';
 import PersonalInterests from './dashboard/Personal_interests';
+import Explore from './pages/Explore';
+import './index.css'
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
           <Route path="/recommendations" element={<OutputPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/explore" element={<Register />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<ContactSection />} />
