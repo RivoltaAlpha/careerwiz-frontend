@@ -25,13 +25,11 @@ const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name, image, 
   const addToCart = async () => {
     if(isAuthenticated && user){
       try {
-        // Create a new career interest
         await createCareerInterest({
           student_id: user?.user_id,
           career_id: career_id,
           // interest_level: "high", 
-        }).unwrap();
-        
+        }).unwrap();        
         toast.success(`Added ${career_name} to your interests!`);
       } catch (error) {
         console.error("Failed to add career interest:", error);
