@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
         {/* Social Media Icons */}
         <div className="flex justify-center mt-8 space-x-4">
           {[FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram].map((Icon, index) => (
-            <a key={index} href="#" className="text-gray-600 hover:text-gray-800">
+            <a title='icons' key={index} href="#" className="text-gray-600 hover:text-gray-800">
               <Icon size={20} />
             </a>
           ))}
