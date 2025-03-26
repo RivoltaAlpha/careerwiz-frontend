@@ -25,6 +25,11 @@ const StudentAcademics = () => {
     setSubjects(updatedSubjects);
   };
 
+    // student to list favourite subjects 
+    const [favouriteSubjects, setFavouriteSubjects] = useState<string[]>([]); 
+    const [favouriteGrades, setFavouriteGrades] = useState<string[]>([]);
+
+
   // Add Subject & Interest Fields
   const addSubject = () => setSubjects([...subjects, { subject: "", grade: "" }]);
 
@@ -62,7 +67,6 @@ const StudentAcademics = () => {
       setIsLoading(false);
     }
   };
-
   return (
     <>
         <Header />
