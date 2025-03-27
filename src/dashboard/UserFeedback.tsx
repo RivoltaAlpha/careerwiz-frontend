@@ -17,14 +17,40 @@ const UserFeedback: React.FC = () => {
       email: "",
       message:"",
       contact:"",
-      recommendation: 0,
+      recommendation: 1,
       student_id: userId || 0
   });
 
     // Get API hooks
-    const [getRecommendations]: any = recommendationsAPI.useGetUserRecommendationsQuery(userId || 0);
+    const { data: getRecommendations } = recommendationsAPI.useGetUserRecommendationsQuery(userId || 0);
     const [submitFeedback] = FeedbackAPI.useCreateFeedbackMutation();
 
+    
+    const getUserRecommendations = async () => {
+      if (!userId) return;
+      
+      try {
+        // Fetch recommendations for the current user
+      const response = getRecommendations;
+      console.log('Recommendations:', response);
+      
+      if (getRecommendations && getRecommendations.length > 0) {
+        setRecommendations(response || []);
+        
+        // Set the first recommendation ID as default if available
+        if (response?.[0]?.recommendations_id) {
+          setFormData(prev => ({
+            ...prev,
+            recommendation: response[0].recommendations_id
+          }));
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+      toast.error('Failed to load recommendations');
+    }
+  };
+  
   useEffect(() => {
     // Only update form data if user data is available
     if (user) {
@@ -38,30 +64,6 @@ const UserFeedback: React.FC = () => {
       getUserRecommendations();
     }
   }, [user]);
-
-  const getUserRecommendations = async () => {
-    if (!userId) return;
-    
-    try {
-      // Fetch recommendations for the current user
-      const response = await getRecommendations(userId).unwrap();
-      
-      if (response && response.length > 0) {
-        setRecommendations(response);
-        
-        // Set the first recommendation ID as default if available
-        if (response[0]?.id) {
-          setFormData(prev => ({
-            ...prev,
-            recommendation: response[0].id
-          }));
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching recommendations:', error);
-      toast.error('Failed to load recommendations');
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -106,12 +108,12 @@ const UserFeedback: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col md:flex-row h-3/4 p-4 gap-4">
+    <div className="flex flex-col md:flex-row h-3/4 p-4 gap-4 text-black">
       {/* Sidebar */}
       < Sidebar />
 
       {/* Main Content */}
-      <main className="w-full md:w-3/4 bg-white p-6 rounded-2xl shadow-md">
+      <main className="w-full md:w-3/4 bg-white text-black p-6 rounded-2xl shadow-md">
         <h1 className="text-2xl font-bold mb-4">Feedback Form</h1>
         <form onSubmit={handleSubmit} className="mt-8 space-y-8 h-full">
                                     <div className="grid w-full gap-y-4">
@@ -123,9 +125,10 @@ const UserFeedback: React.FC = () => {
                                                 Names
                                             </label>
                                             <input
-                                                className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                                                className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-black focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                                                 type="text"
                                                 id="name"
+                                                name='name'
                                                 placeholder="Name"
                                                 value={formData.name} onChange={handleChange}
                                             />
@@ -139,10 +142,11 @@ const UserFeedback: React.FC = () => {
                                             Email
                                         </label>
                                         <input
-                                            className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                                            className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-black focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                                             type="text"
                                             id="email"
                                             placeholder="Email"
+                                            name='email'
                                             value={formData.email} onChange={handleChange}
                                         />
                                     </div>
@@ -154,9 +158,10 @@ const UserFeedback: React.FC = () => {
                                             Phone number
                                         </label>
                                         <input
-                                            className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                                            className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-black focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                                             type="tel"
                                             id="contact"
+                                            name='contact'
                                             placeholder="Phone number"
                                             value={formData.contact} onChange={handleChange}
                                         />
@@ -177,11 +182,11 @@ const UserFeedback: React.FC = () => {
                                             value={formData.recommendation}
                                             onChange={handleChange}
                                           >
-                                            {recommendations.map(rec => (
-                                              <option key={rec.id} value={rec.id}>
-                                                {rec.name || rec.course || rec.title || `Recommendation #${rec.id}`}
-                                              </option>
-                                            ))}
+                                          {recommendations.map(rec => (
+                                            <option key={rec.recommendations_id} value={rec.recommendations_id}>
+                                              {rec.name || rec.course || rec.title || `Recommendation #${rec.recommendations_id}`}
+                                            </option>
+                                          ))}
                                           </select>
                                         </div>
                                       )}
@@ -196,11 +201,12 @@ const UserFeedback: React.FC = () => {
                                             className="flex h-10 w-full rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-black focus:outline-none focus:ring-1 focus:ring-black focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-black dark:text-black dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                                             id="message"
                                             placeholder="Leave us a message"
+                                            name='message'
                                             cols={3}
                                             value={formData.message} onChange={handleChange}
                                         />
                                     </div>
-                                    <button type="button" className="w-[300px] py-2 rounded ml-[50px] bg-cards btn btn-outline btn-primary"
+                                    <button type="submit" className="w-[300px] py-2 rounded ml-[50px] bg-cards btn btn-outline btn-primary"
                                     >
                                         {isLoading ? "Sending..." : "Send Message"}
                                     </button>

@@ -16,6 +16,8 @@ import PersonalInterests from './dashboard/Personal_interests';
 import Explore from './pages/Explore';
 import './index.css'
 import ViewCareer from './pages/viewCareer';
+import CareerCart from './dashboard/Career_Interests';
+import Recommendations from './dashboard/Recommendations';
 
 function App() {
 
@@ -39,11 +41,11 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/academics/:id" element={<StudentAcademics />} />
           <Route path="/student-interests/:id" element={<PersonalInterests />} />
-          {/* 
-          <Route path="/student-recommendations" element={<Recommendations />} />
-          <Route path="/career-cart" element={<CareerCart />} /> 
-          */}
-          <Route path="/user-feedback" element={<UserFeedback />} />
+          
+          <Route path="/student-recommendations/:id" element={<Recommendations />} />
+          <Route path="/career-cart/:id" element={<CareerCart />} /> 
+         
+          <Route path="/user-feedback/:id" element={<UserFeedback />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile-edit" element={<ProfileEditPage />} />
           
@@ -51,7 +53,7 @@ function App() {
           <Route path="/student-recommendations" element={<div>Page R</div>} />
           <Route path="/profile" element={<div>Page P</div>} />
           <Route path="/academics" element={<div>Page A</div>} />
-          <Route path="/feedback" element={<div>Page F</div>} />
+          <Route path="/feedback/:id" element={<div>Page F</div>} />
 
         </Routes>
       </div>
