@@ -100,7 +100,9 @@ export interface Recommendations {
 
 export interface Interests {
   interest_id: number;
+  student_id: number;
   name: string;
+  interest: string;
 }
 
 export interface Feedback {
@@ -137,4 +139,5 @@ export interface PersonalInterests{
   id: number;
   student_id: number;
   personal_interests: string[];
+  interest: string;
 }

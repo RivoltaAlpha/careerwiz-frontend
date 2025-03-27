@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react"; // Ensure React is imported for JSX
 import { CareerCardProps } from "../types/types";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -7,19 +7,18 @@ import { BiCart, BiNotepad } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import { careerInterestsAPI } from "../features/careerInterests/careerInterestsAPI";
 
-const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name, image, interests }) => {
+const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name,description,subjects,requirements, image, interests = [] }) => {
   const { isAuthenticated, user } = useSelector((state: RootState) => state.userAuth);
   const navigate = useNavigate();
   const [createCareerInterest, { isLoading }] = careerInterestsAPI.useCreateCareerInterestMutation();
 
-  useEffect(() => {
-      if (isAuthenticated){
-          navigate('/career-info/id')
-      } 
-  }, [isAuthenticated,navigate]);
-
   const handleExplore = () => {
-    navigate(`/career-info/${career_id}`);
+    if (isAuthenticated){
+      navigate(`/career-info/${career_id}`);
+    }
+    else {
+      toast.warning("Please log in to explore careers");
+    }
   };
 
   const addToCart = async () => {
@@ -41,39 +40,47 @@ const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name, image, 
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+    <div className="flex-col">
       <ToastContainer/>
-      <div className="md:flex">
-        <div className="md:flex-shrink-0">
-          <img className="w-[500px] object-cover md-w-full" src={image} alt={career_name} />
-        </div>
-        <div className="p-8">
-          <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{career_name}</div>
-          <h2 className="text-2xl font-bold mb-2">Career ID: {career_id}</h2>
-          <h3 className="text-gray-600">
-            <span className="font-semibold">Interests: </span>
-            {interests.map((interest: string, index: number) => (
-              <span key={index} className="bg-gray-200 text-gray-800 px-2 py-1 rounded-lg text-sm mx-1">
-                {interest.trim()}
-              </span>
-            ))}
-          </h3>
-          <div className="flex gap-2 items-center justify-center">
-            <button
-              type="button"
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
-              onClick={handleExplore}>
-              <BiNotepad/>
-              Explore
-            </button>
-            <button
-              type="button"
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
-              onClick={addToCart}
-              disabled={isLoading}>
-              <BiCart/>
-              {isLoading ? "Adding..." : "Add"} 
-            </button>
+      <div className="bg-white  shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+        <div className="md:flex flex-col">
+          <div className="md:flex-shrink-0">
+            <img className="w-[500px] object-cover md-w-full" src={image} alt={career_name} />
+          </div>
+          <div className="p-8">
+            <h2 className="text-2xl font-bold mb-2">Career {career_name}</h2>
+            <p className="mt-2  text-black">Description:{description}</p>
+            <p className="mt-2  text-black">Requirements: {requirements}</p>
+            <p className="mt-2  text-black">Subjects: {subjects}</p>            
+            <h3 className=" text-black">
+              <span className="font-semibold">Interests: </span>
+              {Array.isArray(interests) && interests.length > 0 ? (
+                interests.map((interest: string, index: number) => (
+                  <span key={index} className="bg-gray-200 text-gray-900 px-2 py-1 rounded-lg text-sm mx-1">
+                    {interest.trim()}
+                  </span>
+                ))
+              ) : (
+                <span className="text-gray-400">No interests specified</span>
+              )}
+            </h3>
+            <div className="flex gap-2 items-center justify-center">
+              <button
+                type="button"
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
+                onClick={handleExplore}>
+                <BiNotepad/>
+                Explore
+              </button>
+              <button
+                type="button"
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300"
+                onClick={addToCart}
+                disabled={isLoading}>
+                <BiCart/>
+                {isLoading ? "Adding..." : "Add"} 
+              </button>
+            </div>
           </div>
         </div>
       </div>

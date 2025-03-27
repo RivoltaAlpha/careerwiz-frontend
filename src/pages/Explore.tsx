@@ -2,6 +2,7 @@ import React from "react";
 import CareerCard from "../components/CareeerCard";
 import { useGetCareersQuery } from "../features/careers/careersAPI";
 import { SyncLoader } from "react-spinners";
+import Header from "../components/Header";
 
 const Explore: React.FC = () => {
     const { data: careers, error, isLoading } = useGetCareersQuery();
@@ -19,23 +20,26 @@ const Explore: React.FC = () => {
     );
 
   return (
+    <>
+    <Header/>
     <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Explore Careers</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {careers && careers.map((career) => (
           <CareerCard 
-            key={career.career_id} 
-            career_id={career.career_id} 
-            career_name={career.career_name} 
-            description={career.description} 
-            image={career.image}
-            requirements={career.requirements}
-            subjects={career.subjects}
-            interests={career.interests}
+          key={career.career_id} 
+          career_id={career.career_id} 
+          career_name={career.career_name} 
+          description={career.description} 
+          image={career.image}
+          requirements={career.requirements}
+          subjects={career.subjects}
+          interests={career.interests}
           />
         ))}
       </div>
     </div>
+        </>
   );
 };
 

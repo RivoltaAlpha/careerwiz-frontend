@@ -7,7 +7,7 @@ export const careersApi = createApi({
   tagTypes: ["Career"],
   endpoints: (builder) => ({
     getCareers: builder.query<Career[], void>({
-      query: () => "/careers",
+      query: () => "/all-careers",
       providesTags: ["Career"],
     }),
     getCareer: builder.query<Career, number>({
