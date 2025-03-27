@@ -7,7 +7,7 @@ export const recommendationsAPI = createApi({
     tagTypes: ["Recommendations"],
     endpoints: (builder) => ({
         getUserRecommendations: builder.query<Recommendations[], number>({
-            query: (user_id) => `/get-user-recommendations/${user_id}`,
+            query: (user_id) => `/get-student-recommendations/${user_id}`,
             providesTags: ["Recommendations"],
         }),
         getRecommendation: builder.query<Recommendations, number>({
@@ -16,7 +16,7 @@ export const recommendationsAPI = createApi({
         }),
         createRecommendation: builder.mutation<Recommendations, Partial<Recommendations>>({
             query: (newRecommendation) => ({
-                url: "/create-recommendation",
+                url: "/create-recommendations",
                 method: "POST",
                 body: newRecommendation,
             }),
