@@ -138,6 +138,7 @@ export interface CareerInterests{
 export interface PersonalInterests{
   id: number;
   student_id: number;
-  personal_interests: string[];
+  personal_interests: string;
+  personalIntrests: []
   interest: string;
 }
