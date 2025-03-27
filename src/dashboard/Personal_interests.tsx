@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const PersonalInterests = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
-  const userId = user?.user_id;
+  const userId = user?.user_id || 0;
   const [interests, setInterests] = useState([""]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
