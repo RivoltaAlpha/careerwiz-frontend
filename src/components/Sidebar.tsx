@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
     navigate("/");
   };
   return (
-    <div className="w-[200px] min-h-screen bg-cards ">
+    <div className="w-[300px] min-h-screen bg-cards ">
       <nav className="flex flex-col gap-8 space-y-2">
         <ul className='p-6 space-y-10 '>
           <li className='flex items-center'>
