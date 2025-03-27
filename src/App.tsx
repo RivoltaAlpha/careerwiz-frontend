@@ -15,6 +15,7 @@ import StudentAcademics from './dashboard/Academics';
 import PersonalInterests from './dashboard/Personal_interests';
 import Explore from './pages/Explore';
 import './index.css'
+import ViewCareer from './pages/viewCareer';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/explore-career/:id" element={<ViewCareer />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<ContactSection />} />
