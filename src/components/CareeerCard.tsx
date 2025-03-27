@@ -13,12 +13,9 @@ const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name,descript
   const [createCareerInterest, { isLoading }] = careerInterestsAPI.useCreateCareerInterestMutation();
 
   const handleExplore = () => {
-    if (isAuthenticated){
-      navigate(`/career-info/${career_id}`);
-    }
-    else {
-      toast.warning("Please log in to explore careers");
-    }
+      // store selected career in redux store
+      localStorage.setItem("selectedCareer", JSON.stringify({ career_id, career_name, description, subjects, requirements, image, interests }));
+      navigate(`/explore-career/${career_id}`);
   };
 
   const addToCart = async () => {
@@ -48,7 +45,7 @@ const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name,descript
             <img className="w-[500px] object-cover md-w-full" src={image} alt={career_name} />
           </div>
           <div className="p-8">
-            <h2 className="text-2xl font-bold mb-2">Career {career_name}</h2>
+            <h2 className="text-2xl font-bold mb-2">Career: {career_name}</h2>
             <p className="mt-2  text-black">Description:{description}</p>
             <p className="mt-2  text-black">Requirements: {requirements}</p>
             <p className="mt-2  text-black">Subjects: {subjects}</p>            
