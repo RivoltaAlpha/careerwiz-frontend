@@ -114,7 +114,7 @@ const UserFeedback: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col md:flex-row h-3/4 p-4 gap-4 text-black">
+    <div className="flex flex-col md:flex-row h-3/4 gap-4 text-black">
       {/* Sidebar */}
       < Sidebar />
 
