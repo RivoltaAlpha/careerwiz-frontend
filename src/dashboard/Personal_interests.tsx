@@ -111,7 +111,7 @@ const PersonalInterests = () => {
             <div className="grid grid-cols-2 gap-4">
               {interests.length > 0 && interests[0] !== "" ? (
                 interests.map((interest, index) => (
-                  <div key={index} className="p-2 border rounded bg-white">
+                  <div key={index} className="p-2 border rounded bg-white shadow-sm">
                     {interest}
                   </div>
                 ))
