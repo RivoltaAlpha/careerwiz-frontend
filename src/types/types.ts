@@ -16,6 +16,19 @@ export interface Career {
     subjects: string;
     interests: string[];
 }
+
+export interface CareerInterestItem {
+  careerInterests_id: number;
+  career: Career;
+}
+
+export interface StudentCareerInterests {
+  student_id: number;
+  username: string;
+  careerInterests: CareerInterestItem[];
+}
+
+
   // Login Response
   export interface LoginResponse {
     username: string;

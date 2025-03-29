@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {CareerInterests} from "../../types/types";
+import {CareerInterests, StudentCareerInterests} from "../../types/types";
 
 export const careerInterestsAPI  = createApi({
     reducerPath: "careerInterestsAPI",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
     tagTypes: ["CareerInterests"],
     endpoints: (builder) => ({
-        getUserCareerInterests: builder.query<CareerInterests[], number>({
-            query: (user_id) => `/get-students-career-interest/${user_id}`,
+        getUserCareerInterests: builder.query<StudentCareerInterests[], number>({
+            query: (user_id) => `/get-students-career-interests/${user_id}`,
             providesTags: ["CareerInterests"],
         }),
         getCareerInterest: builder.query<CareerInterests, number>({
@@ -16,7 +16,7 @@ export const careerInterestsAPI  = createApi({
         }),
         createCareerInterest: builder.mutation<CareerInterests, Partial<CareerInterests>>({
             query: (newCareerInterest) => ({
-                url: "/create-career-intrest",
+                url: "/create-career-interest",
                 method: "POST",
                 body: newCareerInterest,
             }),
@@ -27,7 +27,7 @@ export const careerInterestsAPI  = createApi({
             { careerInterests_id: number; data: Partial<CareerInterests> }
             >({
             query: ({ careerInterests_id, data }) => ({
-                url: `/update-career-intrest/${careerInterests_id}`,
+                url: `/update-career-interest/${careerInterests_id}`,
                 method: "PUT",
                 body: data,
             }),
@@ -35,7 +35,7 @@ export const careerInterestsAPI  = createApi({
         }),
         deleteCareerInterest: builder.mutation<{ success: boolean; id: number }, number>({
             query: (careerInterest_id) => ({
-                url: `/delete-career-intrest/${careerInterest_id}`,
+                url: `/delete-career-interest/${careerInterest_id}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["CareerInterests"],
