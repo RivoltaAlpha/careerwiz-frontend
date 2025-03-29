@@ -105,6 +105,16 @@ export interface Academics {
   year: number;
 }
 
+export interface StudentAcademics {
+  student_id: number;
+  username: string;
+  academic: AcademicCardProps[];
+}
+export interface Subjects {
+  subject_id: number;
+  subject_name: string;
+}
+
 export interface StudentRecommendations {
   recommended_courses: string[];
 }

@@ -1,16 +1,22 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import Sidebar from "../components/Sidebar";
+import { RootState } from "../app/store";
+import { useSelector } from "react-redux";
+import { academicsAPI } from "../features/Academics/academicsAPI";
 
-const subjectsList = ["English","Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology", "History","Geography", "Physics"," Art and Design", "Music", "Business Studies","French", "German", "Agriculture", "Home science"];
 const gradesList = ["A","A-","B+","B","B-","C+","C","C-","D+","D","D-","E"];
 
 const StudentAcademics = () => {
+  const { user } = useSelector((state: RootState) => state.user);
+  const { data: subjectsList = [] } = academicsAPI.useGetSubjectsQuery();
+  const userId = user?.user_id || 0;
   const [subjects, setSubjects] = useState([{ subject: "", grade: "" }]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isError, setIsError] = useState(false);
+  const [academics, setAcademics] = academicsAPI.useCreateAcademicMutation();
+  const { data: fetchUserAcademics, isLoading: isFetching } = academicsAPI.useGetUserAcademicsQuery(userId);
 
   // Handle Subject & Grade Selection
   const handleSubjectChange = (index: number, value: string) => {
@@ -24,14 +30,13 @@ const StudentAcademics = () => {
     updatedSubjects[index].grade = value;
     setSubjects(updatedSubjects);
   };
-
-    // student to list favourite subjects 
-    const [favouriteSubjects, setFavouriteSubjects] = useState<string[]>([]); 
-    const [favouriteGrades, setFavouriteGrades] = useState<string[]>([]);
-
-
+  
   // Add Subject & Interest Fields
   const addSubject = () => setSubjects([...subjects, { subject: "", grade: "" }]);
+  
+  // student to list favourite subjects 
+  const [favouriteSubjects, setFavouriteSubjects] = useState<string[]>([]); 
+  const [favouriteGrades, setFavouriteGrades] = useState<string[]>([]);
 
   // Calculate Top 4 Subjects
   const getTopSubjects = () => {
@@ -43,25 +48,29 @@ const StudentAcademics = () => {
   };
   
   const navigate = useNavigate();
-  // Submit Data to API
+
   const handleSubmit = async () => {
     setIsLoading(true); // Show loader
 
     const topSubjects = getTopSubjects();
-    const payload = { subjects: topSubjects };
+    const payload = { 
+      subjects: topSubjects,
+      // Add other required properties of the Academics type here
+    };
 
-    try {
-      const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", payload);
-      console.log("Success:", response.data);
-      if (response.status === 200) {
-        localStorage.setItem("recommendations", JSON.stringify(response.data));
-        // set timeout and loader 
-        setTimeout(() => {
-          setIsLoading(false);
-        navigate("/recommendations");
-        }
-        , 2000);
+    try {     
+      const response = fetchUserAcademics;
+      if (response && response?.length > 0) {
+        const userAcademics = response[0]?.academic
+          ?.map((item: any) => item.subject.split(", "))
+          .flat(); // Flatten the array
+
+        setFavouriteSubjects(userAcademics.length > 0 ? userAcademics : [""]);
       }
+
+      await academics(payload).unwrap();
+      setIsLoading(false); // Hide loader
+      navigate(`/student-recommendations/${userId}`); // Redirect to recommendations page 
     } catch (error) {
       console.error("Error submitting:", error);
       setIsLoading(false);

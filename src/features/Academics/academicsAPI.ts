@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {Academics} from "../../types/types";
+import {Academics, StudentAcademics, Subjects} from "../../types/types";
 
 export const academicsAPI  = createApi({
     reducerPath: "academicsAPI",
@@ -10,7 +10,11 @@ export const academicsAPI  = createApi({
             query: () => "/academics",
             providesTags: ["Academics"],
         }),
-        getUserAcademics: builder.query<Academics[], number>({
+        getSubjects: builder.query<Subjects[], void>({
+            query: () => "/all-subjects",
+            providesTags: ["Academics"],
+        }),
+        getUserAcademics: builder.query<StudentAcademics[], number>({
             query: (user_id) => `/academics/user/${user_id}`,
             providesTags: ["Academics"],
         }),
