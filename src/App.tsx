@@ -47,7 +47,7 @@ function App() {
          
           <Route path="/user-feedback/:id" element={<UserFeedback />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile-edit" element={<ProfileEditPage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
           
           {/* Icon routes */}
           <Route path="/student-recommendations" element={<div>Page R</div>} />

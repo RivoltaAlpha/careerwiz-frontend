@@ -5,12 +5,16 @@ import { usersAPI } from '../features/users/usersAPI';
 import { setUserDetails } from "../features/users/userSlice";
 import { toast } from 'sonner';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 export  const ProfileEditPage = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
   const [formData, setFormData] = useState({
     id: user?.user_id || 0,
     username: user?.username || '',
+    firstname: user?.firstname || '',
+    lastname: user?.lastname || '',
+    contact: user?.contact || '',
     email: user?.email || '',
   });
 
@@ -44,7 +48,9 @@ export  const ProfileEditPage = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-8">
+    <div className="flex items-center h-screen bg-gray-100 text-black">
+      <Sidebar />
+    <div className="max-w-8xl mx-auto p-8">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-6">
           <form onSubmit={handleSubmit}>
@@ -58,11 +64,35 @@ export  const ProfileEditPage = () => {
                 className="w-full p-2 border rounded"
               />
               <input
+                type="text"
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleChange}
+                placeholder="First Name"
+                className="w-full p-2 border rounded"
+              />
+              <input
+                type="text"
+                name="lastname"
+                value={formData.lastname}
+                onChange={handleChange}
+                placeholder="Last Name"
+                className="w-full p-2 border rounded"
+              />
+              <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
+                className="w-full p-2 border rounded"
+              />
+              <input
+                type="text"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+                placeholder="Contact"
                 className="w-full p-2 border rounded"
               />
             </div>
@@ -76,6 +106,7 @@ export  const ProfileEditPage = () => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }
