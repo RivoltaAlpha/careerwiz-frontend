@@ -6,9 +6,9 @@ import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-row gap-40 items-center min-h-screen">
+    <div className="flex gap-40 justify-center min-h-screen">
       < Sidebar />
-    <div className="flex flex-col items-center justify-center p-4">
+      <div className="flex flex-col flex-grow m-6 p-8 overflow-y-auto">
       {/* Navigation Buttons */}
       <div className="flex gap-4 mt-4">
         {["R", "P", "A", "F"].map((letter) => (

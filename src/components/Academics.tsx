@@ -5,7 +5,7 @@ const Academics = () => {
   const userId = JSON.parse(localStorage.getItem("user") || "{}").user_id;
   const { data, error, isLoading } = academicsAPI.useGetAcademicHistoryQuery(userId);
 
-  console.log("history data", data);
+  // console.log("history data", data);
 
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Failed to load data.</p>;
@@ -26,7 +26,10 @@ const Academics = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500">No academic data available.</p>
+        <div className="text-center mt-4">
+          <p className="text-gray-500">No academic data available.</p>
+          <img src="/images/collaboration.png" alt="No data" className="w-1/2 mx-auto mt-4" />
+        </div>
       )}
     </div>
   );

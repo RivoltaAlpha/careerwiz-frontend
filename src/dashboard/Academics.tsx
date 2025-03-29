@@ -6,11 +6,13 @@ import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import { academicsAPI } from "../features/Academics/academicsAPI";
 import { toast, ToastContainer } from "react-toastify";
+import Academics from "../components/Academics";
+import { TUser } from "../types/types";
 
 const gradesList = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "E"];
 
 const StudentAcademics = () => {
-  const { user } = useSelector((state: RootState) => state.user);
+    const user = useSelector((state: RootState) => state.user?.user) as TUser;
   const subjectsList = [
     "English", "Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology",
     "History", "Geography", "Physics", "Art and Design", "Music", "Business Studies",
@@ -104,8 +106,11 @@ const getSubjectsToSend = () => {
         zIndex: 9999,
       }}/>
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg my-12">
-          <h2 className="text-2xl font-semibold mb-4">Welcome, {user?.username}... </h2>
-          <div className="mt-6">
+          <h2 className="text-2xl font-semibold mb-4">Welcome, {user?.username}... Here is Your Academic Data</h2>
+        </div>
+           <Academics />
+
+          <div className="mt-20">
               <h3 className="text-lg font-semibold mb-2">Mark Your Favorite Subjects</h3>
               <div className="flex flex-wrap gap-2">
                 {subjectsList.map((subject) => (
@@ -122,7 +127,6 @@ const getSubjectsToSend = () => {
                 ))}
               </div>
             </div>
-        </div>
 
       <div className="flex flex-col flex-grow m-6 p-8 overflow-y-auto">
         <div className="max-w-8xl p-4 rounded-lg shadow-2xl min-h-1/2">
