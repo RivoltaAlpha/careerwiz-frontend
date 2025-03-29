@@ -182,8 +182,10 @@ export interface CareerInterests{
 
 export interface PersonalInterests{
   id: number;
+  personal_interests: string[]
+}
+export interface StudentData {
   student_id: number;
-  personal_interests: string;
-  personalIntrests: []
-  interest: string;
+  username: string;
+  personalIntrests: PersonalInterests[];
 }

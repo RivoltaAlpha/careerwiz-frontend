@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {PersonalInterests} from "../../types/types";
+import {PersonalInterests, StudentData} from "../../types/types";
 
 export const personalInterestsAPI  = createApi({
     reducerPath: "personalInterestsAPI",
@@ -11,6 +11,10 @@ export const personalInterestsAPI  = createApi({
             providesTags: ["PersonalInterests"],
         }),
         getaPersonalIntrest: builder.query<PersonalInterests, number>({
+            query: (id) => `/get-personal-intrest/${id}`,
+            providesTags: ["PersonalInterests"],
+        }),
+        getPersonalIntrests: builder.query<StudentData, number>({
             query: (id) => `/get-personal-intrest/${id}`,
             providesTags: ["PersonalInterests"],
         }),

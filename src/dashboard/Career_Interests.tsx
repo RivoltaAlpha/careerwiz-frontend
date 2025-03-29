@@ -7,7 +7,7 @@ import { Career, TUser } from "../types/types";
 import { RootState } from "../app/store";
 
 const CareerCart = () => {
-    const user = useSelector((state: RootState) => state.user.user) as TUser;
+    const user = useSelector((state: RootState) => state.user?.user) as TUser;
     const userId = user?.user_id;
     const navigate = useNavigate();
     
