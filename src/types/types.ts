@@ -92,10 +92,19 @@ export interface Academics {
   year: number;
 }
 
-export interface Recommendations {
+export interface StudentRecommendations {
+  recommended_courses: string[];
+}
+
+export interface RecommendationItem {
   recommendations_id: number;
+  student_recommendations: StudentRecommendations;
+}
+
+export interface Recommendations {
   student_id: number;
-  student_recommendations: string[];
+  username: string;
+  recommendations: RecommendationItem[];
 }
 
 export interface Interests {

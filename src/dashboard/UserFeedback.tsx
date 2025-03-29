@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { TUser } from '../types/types';
+import {  TUser } from '../types/types';
 import { toast } from 'react-toastify';
 import { recommendationsAPI } from '../features/recommendations/recommendationsAPI';
 import { FeedbackAPI } from '../features/Feedback/feedbackAPI';
@@ -11,7 +11,7 @@ const UserFeedback: React.FC = () => {
     const user = useSelector((state: RootState) => state.userAuth.user) as TUser;
     const userId = user?.user_id;
   const [isLoading, setIsLoading] = useState(false);
-  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [recommendations, setRecommendations] = useState<string[]>([]);
   const [formData, setFormData] = useState({
       name: "",
       email: "",
@@ -21,35 +21,42 @@ const UserFeedback: React.FC = () => {
       student_id: userId || 0
   });
 
-    // Get API hooks
-    const { data: getRecommendations } = recommendationsAPI.useGetUserRecommendationsQuery(userId || 0);
     const [submitFeedback] = FeedbackAPI.useCreateFeedbackMutation();
+    const { data: recommendationsData, isLoading: isLoadingRecs} = recommendationsAPI.useGetUserRecommendationsQuery(userId || 0);
 
-    
-    const getUserRecommendations = async () => {
-      if (!userId) return;
+    useEffect(() => {
+    // console.log("API Response:", recommendationsData);
+
+    if (recommendationsData && 
+        recommendationsData.length > 0 && 
+        recommendationsData[0].recommendations && 
+        recommendationsData[0].recommendations.length > 0 &&
+        recommendationsData[0].recommendations[0].student_recommendations &&
+        recommendationsData[0].recommendations[0].student_recommendations.recommended_courses &&
+        recommendationsData[0].recommendations[0].student_recommendations.recommended_courses.length > 0
+        && recommendationsData[0].recommendations[0].student_recommendations.recommended_courses[0] !== "" &&
+        recommendationsData[0].recommendations[0].student_recommendations.recommended_courses[0] !== null
+        && recommendationsData[0].recommendations[0].student_recommendations.recommended_courses[0] !== undefined
+      ) {
       
-      try {
-        // Fetch recommendations for the current user
-      const response = getRecommendations;
-      console.log('Recommendations:', response);
+      const courses = recommendationsData[0].recommendations[0].student_recommendations.recommended_courses;
+      // console.log("Extracted recommendations:", courses);
       
-      if (getRecommendations && getRecommendations.length > 0) {
-        setRecommendations(response || []);
-        
-        // Set the first recommendation ID as default if available
-        if (response?.[0]?.recommendations_id) {
-          setFormData(prev => ({
-            ...prev,
-            recommendation: response[0].recommendations_id
-          }));
-        }
+      setRecommendations(courses);
+      
+      // Update form with first recommendation if available
+      if (courses.length > 0) {
+        setFormData(prev => ({
+          ...prev,
+          recommendation: 1
+        }));
       }
-    } catch (error) {
-      console.error('Error fetching recommendations:', error);
-      toast.error('Failed to load recommendations');
+    } else {
+      setRecommendations([]);
+      // console.error("No valid recommendations found in the response.");
+      toast.error("No valid recommendations found in the response.");
     }
-  };
+    }, [recommendationsData]);
   
   useEffect(() => {
     // Only update form data if user data is available
@@ -61,8 +68,7 @@ const UserFeedback: React.FC = () => {
         contact: user.contact || "",
         student_id: user.user_id || 0
       }));
-      getUserRecommendations();
-    }
+        }
   }, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -166,8 +172,9 @@ const UserFeedback: React.FC = () => {
                                             value={formData.contact} onChange={handleChange}
                                         />
                                     </div>                                    
-                                      {/* Recommendation Selection */}
-                                      {recommendations.length > 0 && (
+                                      {isLoadingRecs ? (
+                                        <div>Loading recommendations...</div>
+                                      ) : recommendations.length > 0 ? (
                                         <div className="grid w-full items-center gap-1.5">
                                           <label
                                             className="text-sm font-medium leading-none text-black peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -182,13 +189,18 @@ const UserFeedback: React.FC = () => {
                                             value={formData.recommendation}
                                             onChange={handleChange}
                                           >
-                                          {recommendations.map(rec => (
-                                            <option key={rec.recommendations_id} value={rec.recommendations_id}>
-                                              {rec.name || rec.course || rec.title || `Recommendation #${rec.recommendations_id}`}
+                                          {recommendations.map((course, index) => (
+                                            <option 
+                                              key={index} 
+                                              value={index + 1}
+                                            >
+                                              {course}
                                             </option>
                                           ))}
                                           </select>
                                         </div>
+                                      ) : (
+                                        <div>No recommendations available</div>
                                       )}
                                     <div className="grid w-full items-center gap-1.5">
                                         <label
@@ -217,3 +229,4 @@ const UserFeedback: React.FC = () => {
 };
 
 export default UserFeedback;
+

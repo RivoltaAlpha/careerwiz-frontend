@@ -3,7 +3,7 @@ import {Feedback} from "../../types/types";
 
 export const FeedbackAPI  = createApi({
     reducerPath: "FeedbackAPI",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://careerwiz-backend.vercel.app/" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
     tagTypes: ["Feedback"],
     endpoints: (builder) => ({
         getUserFeedback: builder.query<Feedback[], number>({
