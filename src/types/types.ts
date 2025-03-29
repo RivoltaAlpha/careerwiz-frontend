@@ -104,11 +104,24 @@ export interface Academics {
   subject_score: number;
   year: number;
 }
+export interface AcademicHistoryItem {
+  grade: string;
+  subject: string;
+}
+
+export interface AcademicHistoryProps {
+  subjects: string[];
+  academic_history: AcademicHistoryItem[];
+}
+
+
+export type AcademicHistory = AcademicHistoryItem[];
 
 export interface StudentAcademics {
+  academic_id: number;
   student_id: number;
-  username: string;
-  academic: AcademicCardProps[];
+  subjects: string[];
+  academic_history: AcademicHistory;
 }
 export interface Subjects {
   subject_id: number;
