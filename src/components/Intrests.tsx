@@ -8,7 +8,7 @@ const Interests = () => {
   const userId = user?.user_id || 0;
   const { data, error, isLoading } = personalInterestsAPI.useGetPersonalIntrestsQuery(userId);
 
-  console.log("data", data)
+  // console.log("data", data)
 
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Failed to load data.</p>;

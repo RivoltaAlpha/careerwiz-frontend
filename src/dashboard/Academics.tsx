@@ -77,7 +77,7 @@ const getSubjectsToSend = () => {
     setIsLoading(true);
   
     const subjectsToSend = getSubjectsToSend();
-    console.log("Subjects to send:", subjectsToSend);
+    // console.log("Subjects to send:", subjectsToSend);
   
     const payload = {
       student_id: userId,
