@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {Academics, StudentAcademics, Subjects} from "../../types/types";
+import {AcademicHistoryProps, Academics, StudentAcademics, Subjects} from "../../types/types";
 
 export const academicsAPI  = createApi({
     reducerPath: "academicsAPI",
@@ -7,7 +7,7 @@ export const academicsAPI  = createApi({
     tagTypes: ["Academics"],
     endpoints: (builder) => ({
         getAcademics: builder.query<Academics[], void>({
-            query: () => "/academics",
+            query: () => "/all-academics",
             providesTags: ["Academics"],
         }),
         getSubjects: builder.query<Subjects[], void>({
@@ -15,16 +15,20 @@ export const academicsAPI  = createApi({
             providesTags: ["Academics"],
         }),
         getUserAcademics: builder.query<StudentAcademics[], number>({
-            query: (user_id) => `/academics/user/${user_id}`,
+            query: (user_id) => `/get-student-academics/${user_id}`,
+            providesTags: ["Academics"],
+        }),
+        getAcademicHistory: builder.query<AcademicHistoryProps[], number>({
+            query: (user_id) => `/student-history/${user_id}`,
             providesTags: ["Academics"],
         }),
         getAcademic: builder.query<Academics, number>({
-            query: (academic_id) => `/academics/${academic_id}`,
+            query: (academic_id) => `/get-academic/${academic_id}`,
             providesTags: ["Academics"],
         }),
         createAcademic: builder.mutation<Academics, Partial<Academics>>({
             query: (newAcademic) => ({
-                url: "/academics",
+                url: "/create-academic",
                 method: "POST",
                 body: newAcademic,
             }),
@@ -35,7 +39,7 @@ export const academicsAPI  = createApi({
             { academic_id: number; data: Partial<Academics> }
             >({
             query: ({ academic_id, data }) => ({
-                url: `/academics/${academic_id}`,
+                url: `/update-academic/${academic_id}`,
                 method: "PUT",
                 body: data,
             }),
@@ -43,7 +47,7 @@ export const academicsAPI  = createApi({
         }),
         deleteAcademic: builder.mutation<{ success: boolean; id: number }, number>({
             query: (academic_id) => ({
-                url: `/academics/${academic_id}`,
+                url: `/delete-academic/${academic_id}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Academics"],
