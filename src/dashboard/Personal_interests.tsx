@@ -9,7 +9,7 @@ import Sidebar from "../components/Sidebar";
 import type { PersonalInterests } from "../types/types";
 
 const PersonalInterests = () => {
-  const { user } = useSelector((state: RootState) => state.userAuth);
+  const { user } = useSelector((state: RootState) => state.user);
   const userId = user?.user_id || 0;
   const [interests, setInterests] = useState<string[]>([""]);
   const [newInterests, setNewInterests] = useState<string[]>([""]);
@@ -30,7 +30,7 @@ const PersonalInterests = () => {
   const getUserInterests = async () => {
     try {
       const response = await fetchUserInterests(userId).unwrap();
-      console.log("User Interests Response:", response);
+      // console.log("User Interests Response:", response);
   
       if (response && response.length > 0) {
         const userInterests = response[0]?.personalIntrests
