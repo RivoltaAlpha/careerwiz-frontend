@@ -59,7 +59,7 @@ const Recommendations = () => {
           // create the recommendation on the backend. 
           const recommendationData = {
             user_id: userId,
-            recommended_courses: response.data,
+            student_recommendations: response.data,
           };
           const createResponse = await axios.post("http://localhost:8000/create-recommendations", recommendationData);
           console.log("Recommendation created:", createResponse.data);
