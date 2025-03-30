@@ -57,34 +57,30 @@ const Recommendations = () => {
         subjects: recommendationAttributes?.[0].academics.map((academic) => academic.subjects).flat() || [],
          interests : recommendationAttributes?.[0]?.personalIntrests?.map((interest) => interest.personal_interests.split(",")).flat() || [],
       };
-      const studentRecommendations = 
-      {
-        student_id: userId,
-        student_recommendations: submitData,
-      };
-      console.log("Student Recommendations:", studentRecommendations);
-      // console.log("Submit Data:", submitData);
+      console.log("Submit Data:", submitData);
+
+
       try {
-        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", studentRecommendations);
+        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData);
         console.log("Success:", response.data);
         if (response.status === 200) {
-          // create the recommendation on the backend. 
-          const recommendationData = {
+          const studentRecommendations = {
             student_id: userId,
             student_recommendations: response.data,
           };
-          const createResponse = await axios.post("http://localhost:8000/create-recommendations", recommendationData);
+          console.log("Student Recommendations:", studentRecommendations);
+
+          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations);
           console.log("Recommendation created:", createResponse.data);
 
           if (createResponse.status === 200) {
             setRecommendations(createResponse.data);
           }
-          // Redirect to the recommendations page after a delay
           setTimeout(() => {
             setLoading(false);
           navigate(`/student-recommendations/${userId}`);
           }
-          , 10000);
+          , 5000);
         }
       } catch (error) {
         console.error("Error submitting:", error);
