@@ -141,6 +141,14 @@ export interface Recommendations {
   recommendations: RecommendationItem[];
 }
 
+export interface recommendationObject {
+  recommended_courses: string[];
+}
+
+export interface createRecommendation{
+  student_id: number;
+  student_recommendations: string[];
+}
 export interface Interests {
   interest_id: number;
   student_id: number;
