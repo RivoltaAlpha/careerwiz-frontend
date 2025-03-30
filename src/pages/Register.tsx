@@ -37,11 +37,11 @@ export default function Register() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Submitting form data:", formData);
+        // console.log("Submitting form data:", formData);
 
         try {
             const response = await registerUser(formData).unwrap();
-            console.log("Backend response:", response);
+            // console.log("Backend response:", response);
             toast.success('User registered successfully');
             navigate('/login');
         } catch (err) {
