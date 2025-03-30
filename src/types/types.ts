@@ -185,16 +185,18 @@ export interface PersonalInterest {
   personal_interests: string; 
 }
 
-export interface PersonalInterests{
+export interface PersonalnterestsData{
   id: number;
   student_id: number;
-  personal_interests: string[]
-  
-}
-export interface StudentData {
-  student_id: number;
-  username: string;
-  personal_interests: string[];
   personalIntrests: PersonalInterest[];
-  isLoading: boolean;
 }
+export interface StudentPersonalInterests {
+  id: number;
+  student_id: number;
+  personal_interests: PersonalInterest[];
+  isLoading: any;
+}
+export type CreateInterestPayload = {
+  student_id: number;
+  personal_interests: string;
+};

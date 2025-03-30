@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
-import { StudentData, type PersonalInterest, type PersonalInterests } from "../types/types";
+import { StudentPersonalInterests, PersonalInterest } from "../types/types";
 
 const PersonalInterests = () => {
   const { user } = useSelector((state: RootState) => state.userAuth);
@@ -17,7 +17,7 @@ const PersonalInterests = () => {
   const navigate = useNavigate();
 
   // RTK Query hooks
-  const [fetchUserInterests, { isLoading: isFetching }] = personalInterestsAPI.useLazyGetUserInterestsQuery<StudentData[]>();
+  const [fetchUserInterests] = personalInterestsAPI.useLazyGetUserInterestsQuery<StudentPersonalInterests[]>();
   const [createInterest, { isLoading: isCreating }] = personalInterestsAPI.useCreatePersonalInterestMutation();
 
   useEffect(() => {
@@ -103,7 +103,6 @@ const PersonalInterests = () => {
       {/* Main Content */}
       <div className="flex flex-col flex-grow m-6 p-8 overflow-y-auto">
         <div className="max-w-8xl">
-          {/* List of Interests */}
           <div className="p-6 shadow-lg rounded-lg bg-gray-50 mb-6">
             <h2 className="text-2xl font-semibold text-center mb-2">
               Your Personal Interests
@@ -119,7 +118,8 @@ const PersonalInterests = () => {
                 <p className="text-center text-gray-500">No interests found. Please add some!</p>
               )}
             </div>
-          </div>
+          </div>        
+          {/* Instructions Section */}
   
           {/* Add Interests Section */}
           <div className="p-6 shadow-lg rounded-lg bg-gray-50">
@@ -172,7 +172,6 @@ const PersonalInterests = () => {
                 type="button"
                 onClick={handleSubmitNewInterests}
                 className="w-3/4 p-3 bg-cards text-white font-bold rounded"
-                disabled={isFetching}
               >
                 Save Interests
               </button>
