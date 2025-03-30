@@ -10,7 +10,7 @@ export const personalInterestsAPI  = createApi({
             query: (user_id) => `/get-student-intrests/${user_id}`,
             providesTags: ["PersonalInterests"],
         }),
-        getaPersonalIntrest: builder.query<PersonalInterests, number>({
+        getaPersonalIntrest: builder.query<StudentData, number>({
             query: (id) => `/get-personal-intrest/${id}`,
             providesTags: ["PersonalInterests"],
         }),

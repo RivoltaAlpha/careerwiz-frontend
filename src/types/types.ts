@@ -180,12 +180,21 @@ export interface CareerInterests{
   }
 }
 
+export interface PersonalInterest {
+  id: number;
+  personal_interests: string; 
+}
+
 export interface PersonalInterests{
   id: number;
+  student_id: number;
   personal_interests: string[]
+  
 }
 export interface StudentData {
   student_id: number;
   username: string;
-  personalIntrests: PersonalInterests[];
+  personal_interests: string[];
+  personalIntrests: PersonalInterest[];
+  isLoading: boolean;
 }

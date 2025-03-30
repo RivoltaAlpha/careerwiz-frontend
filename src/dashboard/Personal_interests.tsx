@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
-import type { PersonalInterests } from "../types/types";
+import { StudentData, type PersonalInterest, type PersonalInterests } from "../types/types";
 
 const PersonalInterests = () => {
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state.userAuth);
   const userId = user?.user_id || 0;
   const [interests, setInterests] = useState<string[]>([""]);
   const [newInterests, setNewInterests] = useState<string[]>([""]);
@@ -17,7 +17,7 @@ const PersonalInterests = () => {
   const navigate = useNavigate();
 
   // RTK Query hooks
-  const [fetchUserInterests, { isLoading: isFetching }] = personalInterestsAPI.useLazyGetUserInterestsQuery();
+  const [fetchUserInterests, { isLoading: isFetching }] = personalInterestsAPI.useLazyGetUserInterestsQuery<StudentData[]>();
   const [createInterest, { isLoading: isCreating }] = personalInterestsAPI.useCreatePersonalInterestMutation();
 
   useEffect(() => {
@@ -30,11 +30,11 @@ const PersonalInterests = () => {
   const getUserInterests = async () => {
     try {
       const response = await fetchUserInterests(userId).unwrap();
-      // console.log("User Interests Response:", response);
+      console.log("User Interests Response:", response);
   
       if (response && response.length > 0) {
         const userInterests = response[0]?.personalIntrests
-          ?.map((item: any) => item.personal_interests.split(", "))
+          ?.map((item: PersonalInterest) => item.personal_interests.split(", "))
           .flat(); // Flatten the array
   
         setInterests(userInterests.length > 0 ? userInterests : [""]);
@@ -111,7 +111,7 @@ const PersonalInterests = () => {
             <div className="grid grid-cols-2 gap-4">
               {interests.length > 0 && interests[0] !== "" ? (
                 interests.map((interest, index) => (
-                  <div key={index} className="p-2 border rounded bg-white shadow-sm">
+                  <div key={index} className="p-2 border rounded bg-white">
                     {interest}
                   </div>
                 ))
