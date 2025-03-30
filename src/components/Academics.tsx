@@ -28,7 +28,7 @@ const Academics = () => {
       ) : (
         <div className="text-center mt-4">
           <p className="text-gray-500">No academic data available.</p>
-          <img src="/images/collaboration.png" alt="No data" className="w-1/2 mx-auto mt-4" />
+          <img src="/images/collaboration.png" alt="No data" className="lg:w-1/ w-40 mx-auto mt-4" />
         </div>
       )}
     </div>
