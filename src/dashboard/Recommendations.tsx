@@ -52,9 +52,8 @@ const Recommendations = () => {
          interests : recommendationAttributes?.[0]?.personalIntrests?.map((interest) => interest.personal_interests.split(",")).flat() || [],
       };
       // console.log("Submit Data:", submitData);
-      const payload = { submitData};
       try {
-        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", payload);
+        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData);
         console.log("Success:", response.data);
         if (response.status === 200) {
           localStorage.setItem("recommendations", JSON.stringify(response.data));
