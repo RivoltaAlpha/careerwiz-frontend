@@ -90,7 +90,7 @@ const getSubjectsToSend = () => {
     try {
       await academics(payload).unwrap();
       setIsLoading(false);
-      navigate(`/student-recommendations/${userId}`);
+      navigate(`/academics/${userId}`);
     } catch (error) {
       console.error("Error submitting:", error);
       setIsLoading(false);
