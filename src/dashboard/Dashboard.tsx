@@ -60,7 +60,7 @@ const Dashboard = () => {
         {/* Career Path Section */}
         <div className="bg-gray-50 p-6 rounded-lg shadow-md my-10 text-center">
           <h2 className="text-lg font-semibold">
-            Process of generating a career path based on your interests and academic performance.
+            Generate a career path based on your interests and academic performance.
           </h2>
         </div>
 
