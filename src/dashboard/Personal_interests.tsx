@@ -29,9 +29,7 @@ const PersonalInterests = () => {
   // Fetch user interests
   const getUserInterests = async () => {
     try {
-      const response = await fetchUserInterests(userId).unwrap();
-      console.log("User Interests Response:", response);
-  
+      const response = await fetchUserInterests(userId).unwrap();  
       if (response && response.length > 0) {
         const userInterests = response[0]?.personalIntrests
           ?.map((item: PersonalInterest) => item.personal_interests.split(", "))
