@@ -1,24 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {PersonalInterests, StudentData} from "../../types/types";
+import {StudentPersonalInterests, PersonalnterestsData, CreateInterestPayload} from "../../types/types";
 
 export const personalInterestsAPI  = createApi({
     reducerPath: "personalInterestsAPI",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
     tagTypes: ["PersonalInterests"],
     endpoints: (builder) => ({
-        getUserInterests: builder.query<PersonalInterests[], number>({
+        getUserInterests: builder.query<PersonalnterestsData[], number>({
             query: (user_id) => `/get-student-intrests/${user_id}`,
             providesTags: ["PersonalInterests"],
         }),
-        getaPersonalIntrest: builder.query<StudentData, number>({
+        getaPersonalIntrest: builder.query<StudentPersonalInterests, number>({
             query: (id) => `/get-personal-intrest/${id}`,
             providesTags: ["PersonalInterests"],
         }),
-        getPersonalIntrests: builder.query<StudentData, number>({
+        getPersonalIntrests: builder.query<PersonalnterestsData, number>({
             query: (id) => `/get-personal-intrest/${id}`,
             providesTags: ["PersonalInterests"],
         }),
-        createPersonalInterest: builder.mutation<PersonalInterests, Partial<PersonalInterests>>({
+        createPersonalInterest: builder.mutation<CreateInterestPayload, Partial<CreateInterestPayload>>({
             query: (newPersonalInterest) => ({
                 url: "/create-personal-intrest",
                 method: "POST",
@@ -27,8 +27,8 @@ export const personalInterestsAPI  = createApi({
             invalidatesTags: ["PersonalInterests"],
         }),
         updatePersonalInterest: builder.mutation<
-        PersonalInterests,
-            { id: number; data: Partial<PersonalInterests> }
+        PersonalnterestsData,
+            { id: number; data: Partial<PersonalnterestsData> }
             >({
             query: ({ id, data }) => ({
                 url: `/update-personal-intrest/${id}`,

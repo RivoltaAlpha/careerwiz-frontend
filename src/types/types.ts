@@ -200,3 +200,17 @@ export type CreateInterestPayload = {
   student_id: number;
   personal_interests: string;
 };
+
+
+export interface RecommendationslInterest {
+  personal_interests: string; // Comma-separated string of interests
+}
+
+export interface RecommendationsAcademics {
+  subjects: string[]; // Array of subjects
+}
+
+export interface RecommendationAttributes {
+  personalIntrests: RecommendationslInterest[];
+  academics: RecommendationsAcademics[];
+}
