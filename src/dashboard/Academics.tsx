@@ -90,7 +90,11 @@ const getSubjectsToSend = () => {
     try {
       await academics(payload).unwrap();
       setIsLoading(false);
+      toast.success("Academic data submitted successfully!");
+      setTimeout(() => {
       navigate(`/academics/${userId}`);
+      }
+      , 2000);
     } catch (error) {
       console.error("Error submitting:", error);
       setIsLoading(false);
@@ -220,7 +224,7 @@ const getSubjectsToSend = () => {
         {isLoading ? (
           <div className="mt-6 flex justify-center items-center">
             <ClipLoader color="cards" size={45} />
-            <p className="ml-3 text-lg">Processing your recommendations...</p>
+            <p className="ml-3 text-lg">Submitting your academic data...</p>
           </div>
         ) : (
           <button
