@@ -11,6 +11,7 @@ import axios from "axios";
 const Recommendations = () => {
       const user = useSelector((state: RootState) => state.user?.user) as TUser;
       const userId = user?.user_id;
+      console.log("User from Redux:", userId);
       const navigate = useNavigate();
       const [Loading, setLoading] = useState(false);
       const [recommendations, setRecommendations] = useState<string[]>([]);
