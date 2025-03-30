@@ -51,24 +51,22 @@ const Recommendations = () => {
         console.error("User ID is null or undefined. Cannot proceed.");
         return;
       }
+
       setLoading(true);
 
       const submitData = {
         subjects: recommendationAttributes?.[0].academics.map((academic) => academic.subjects).flat() || [],
          interests : recommendationAttributes?.[0]?.personalIntrests?.map((interest) => interest.personal_interests.split(",")).flat() || [],
       };
-      console.log("Submit Data:", submitData);
-
 
       try {
         const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData);
-        console.log("Success:", response.data);
         if (response.status === 200) {
+
           const studentRecommendations = {
             student_id: userId,
             student_recommendations: response.data,
           };
-          console.log("Student Recommendations:", studentRecommendations);
 
           const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations);
           console.log("Recommendation created:", createResponse.data);
@@ -76,6 +74,7 @@ const Recommendations = () => {
           if (createResponse.status === 200) {
             setRecommendations(createResponse.data);
           }
+          
           setTimeout(() => {
             setLoading(false);
           navigate(`/student-recommendations/${userId}`);
