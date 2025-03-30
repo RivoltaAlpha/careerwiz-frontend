@@ -50,10 +50,10 @@ function App() {
           <Route path="/profile/edit" element={<ProfileEditPage />} />
           
           {/* Icon routes */}
-          <Route path="/student-recommendations" element={<div>Page R</div>} />
-          <Route path="/profile" element={<div>Page P</div>} />
-          <Route path="/academics" element={<div>Page A</div>} />
-          <Route path="/feedback/:id" element={<div>Page F</div>} />
+          <Route path="/r" element={<Recommendations />} />
+          <Route path="/p" element={<Profile />} />
+          <Route path="/a" element={<StudentAcademics />} />
+          <Route path="/e" element={<Explore />} />
 
         </Routes>
       </div>
