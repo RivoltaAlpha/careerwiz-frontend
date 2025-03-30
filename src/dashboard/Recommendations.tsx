@@ -56,7 +56,17 @@ const Recommendations = () => {
         const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData);
         console.log("Success:", response.data);
         if (response.status === 200) {
-          localStorage.setItem("recommendations", JSON.stringify(response.data));
+          // create the recommendation on the backend. 
+          const recommendationData = {
+            user_id: userId,
+            recommended_courses: response.data,
+          };
+          const createResponse = await axios.post("http://localhost:8000/create-recommendations", recommendationData);
+          console.log("Recommendation created:", createResponse.data);
+          if (createResponse.status === 200) {
+            setRecommendations(createResponse.data.recommended_courses);
+          }
+          // Redirect to the recommendations page after a delay
           setTimeout(() => {
             setLoading(false);
           navigate(`/student-recommendations/${userId}`);
