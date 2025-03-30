@@ -59,7 +59,7 @@ const Recommendations = () => {
         if (response.status === 200) {
           // create the recommendation on the backend. 
           const recommendationData = {
-            user_id: userId,
+            student_id: userId,
             student_recommendations: response.data,
           };
           const createResponse = await axios.post("http://localhost:8000/create-recommendations", recommendationData);
