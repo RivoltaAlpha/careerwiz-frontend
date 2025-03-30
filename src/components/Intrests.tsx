@@ -23,8 +23,10 @@ const Interests = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500">No interests found.</p>
-      )}
+        <div className="text-center mt-4">
+          <p className="text-gray-500">No Personal Interests selected.</p>
+          <img src="/images/programming.png" alt="No data" className="w-1/2 mx-auto mt-4" />
+        </div>      )}
     </div>
   );
 };
