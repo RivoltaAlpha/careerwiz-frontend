@@ -40,7 +40,7 @@ export default function Register() {
         // console.log("Submitting form data:", formData);
 
         try {
-            const response = await registerUser(formData).unwrap();
+            await registerUser(formData).unwrap();
             // console.log("Backend response:", response);
             toast.success('User registered successfully');
             navigate('/login');
