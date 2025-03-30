@@ -11,7 +11,6 @@ import axios from "axios";
 const Recommendations = () => {
       const user = useSelector((state: RootState) => state.user?.user) as TUser;
       const userId = user?.user_id;
-      console.log("User from Redux:", userId);
       const navigate = useNavigate();
       const [Loading, setLoading] = useState(false);
       const [recommendations, setRecommendations] = useState<string[]>([]);
@@ -74,12 +73,14 @@ const Recommendations = () => {
           if (createResponse.status === 200) {
             setRecommendations(createResponse.data);
           }
-          
+
           setTimeout(() => {
             setLoading(false);
+            // reload page 
+          window.location.reload();
           navigate(`/student-recommendations/${userId}`);
           }
-          , 5000);
+          , 2000);
         }
       } catch (error) {
         console.error("Error submitting:", error);
