@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RegPic from '/images/hero.jpg';
+import RegPic from '/images/bg2.jpg';
 import { NavLink } from 'react-router-dom';
 import { Toaster, toast } from 'sonner';
 import { registrationAPI } from '../features/register/register';
@@ -53,11 +53,11 @@ export default function Register() {
     return (
         <>
             <Header />
-            <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-6"
+            <div className="min-h-screen flex-grow max-w-8xl items-center justify-center bg-cover bg-center relative px-6"
                 style={{ backgroundImage: `url(${RegPic})` }}
             >
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="absolute inset-0 bg-black opacity-60"></div>
 
                 <Toaster
                     toastOptions={{
@@ -70,7 +70,7 @@ export default function Register() {
                     }}
                 />
 
-                <div className="relative mx-auto my-10 bg-gray-300 bg-opacity-90 rounded-xl shadow-lg p-20">
+                <div className="relative mx-auto w-3/4 lg:my-40 my-3 bg-gray-300 bg-opacity-90 rounded-xl shadow-lg p-20">
                     <h2 className="text-3xl font-bold text-center text-gray-800">Create Your Account</h2>
 
                     <form className="mt-6 space-y-5" onSubmit={handleSubmit}>

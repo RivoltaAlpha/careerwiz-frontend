@@ -1,10 +1,9 @@
 import React from 'react';
-import backgroundImage from '/images/hero.jpg';// Ensure this path is correct a nd the file exists
+import backgroundImage from '/images/bg.jpg';// Ensure this path is correct a nd the file exists
 
 const Hero: React.FC = () => {
   return (
-    <div 
-      className="min-h-screen flex flex-col justify-center items-center text-center bg-cover bg-center relative" 
+    <div className="min-h-screen flex flex-col justify-center items-center text-center bg-cover bg-center relative" 
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -14,7 +13,7 @@ const Hero: React.FC = () => {
         <p className="max-w-2xl ml-auto mr-auto font-semibold text-xl mb-8">
           Join us and start exploring different Careers available for you, today!
           <br/>
-          An easier way to identify what career suits you most based on your Academics and Personal Interests.
+          An easier way to identify what career suits you most based on what you love!
         </p>
         <a 
           href="/predictions" 

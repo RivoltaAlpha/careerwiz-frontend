@@ -40,19 +40,22 @@ export default function AboutUs() {
         <h2 className="text-4xl font-bold text-center">Testimonials</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           <div className="p-4 items-center justify-center shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow duration-300">
-            <img src="/images/team.png" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
-                <h3 className="text-xl mt-4 font-semibold">Tyla</h3>
+            <img src="https://img.freepik.com/free-vector/virtual-graduation-ceremony-with-university-graduate_23-2148571732.jpg?uid=R154664640&semt=ais_hybrid" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
+                <h3 className="text-xl mt-4 font-semibold">Alex K.</h3>
+                <br/>
                 <p>"CareerWiz helped me find the perfect career path based on my skills and interests. Highly recommend!" - Alex K.</p>
           </div>
           <div className="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow duration-300">
-            <img src="/images/team.png" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
-                <h3 className="text-xl mt-4 font-semibold">Tyla</h3>
-                <p>"CareerWiz helped me find the perfect career path based on my skills and interests. Highly recommend!" - Alex K.</p>
+            <img src="https://img.freepik.com/free-vector/smiling-student-holds-diploma_24908-81881.jpg?uid=R154664640&semt=ais_hybrid" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
+                <h3 className="text-xl mt-4 font-semibold">Skyla Jackson</h3>
+                <br/>
+                <p>"CareerWiz helped me find the perfect career path based on my skills and interests. Highly recommend!" - Skyla Jackson</p>
           </div>
           <div className="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow duration-300">
-                <img src="/images/team.png" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
-                <h3 className="text-xl mt-4 font-semibold">Tyla</h3>
-                <p>"CareerWiz helped me find the perfect career path based on my skills and interests. Highly recommend!" - Alex K.</p>
+                <img src="https://img.freepik.com/free-vector/person-smiling-graduation-cap_24908-81492.jpg?uid=R154664640&semt=ais_hybrid" alt="" className="w-24 h-24 rounded-full border-4 border-gray-300" />
+                <h3 className="text-xl mt-4 font-semibold">Grace Wambui</h3>
+                <br/>
+                <p>"CareerWiz helped me find the perfect career path based on my skills and interests. Highly recommend!" - Grace Wambui</p>
           </div>
         </div>
       </section>
@@ -83,7 +86,7 @@ export default function AboutUs() {
             name: 'Mwaniki Tifany',
             role: 'Software Developer',
             description: 'Tifany brings over a decade of experience in AI and machine learning, leading the development of intelligent recommendation systems at CareerWiz.',
-            image: '/images/team.png',
+            image: 'https://img.freepik.com/free-photo/college-students-different-ethnicities-cramming_23-2149891288.jpg?uid=R154664640&semt=ais_hybrid',
             linkedin: '#',
             twitter: '#',
             facebook: '#'
@@ -91,7 +94,7 @@ export default function AboutUs() {
               name: 'Magdalene komu',
               role: 'Education Specialist',
               description: "Magdalene's background in education and career guidance helps shape our platform's alignment with the needs of Kenyan students and educators.",
-              image: '/images/team.png',
+              image: 'https://img.freepik.com/free-photo/student-strolls-college-yard-carries-rucksack-notepads-weas-pink-shirt-knitted-vest-hoop-surrounded-by-city-street-expresses-positive-emotions_273609-55312.jpg?uid=R154664640&semt=ais_hybrid',
               linkedin: '#',
               twitter: '#',
             }].map((member, index) => (
