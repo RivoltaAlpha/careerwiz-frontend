@@ -43,6 +43,7 @@ function App() {
           <Route path="/student-interests/:id" element={<PersonalInterests />} />
           
           <Route path="/student-recommendations/:id" element={<Recommendations />} />
+          <Route path="/recommendations/:id" element={<Recommendations />} />
           <Route path="/career-cart/:id" element={<CareerCart />} /> 
          
           <Route path="/user-feedback/:id" element={<UserFeedback />} />

@@ -78,7 +78,7 @@ const Recommendations = () => {
             setLoading(false);
             // reload page 
           window.location.reload();
-          navigate(`/student-recommendations/${userId}`);
+          navigate(`/recommendations/${userId}`);
           }
           , 2000);
         }
