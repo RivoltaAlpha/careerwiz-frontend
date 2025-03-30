@@ -138,8 +138,6 @@ export interface RecommendationItem {
 }
 
 export interface Recommendations {
-  student_id: number;
-  username: string;
   recommendations: RecommendationItem[];
 }
 

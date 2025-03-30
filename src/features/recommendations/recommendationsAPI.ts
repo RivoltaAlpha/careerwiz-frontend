@@ -6,12 +6,12 @@ export const recommendationsAPI = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
     tagTypes: ["Recommendations"],
     endpoints: (builder) => ({
-        getUserRecommendations: builder.query<Recommendations[], number>({
-            query: (user_id) => `/get-student-recommendations/${user_id}`,
-            providesTags: ["Recommendations"],
-        }),
         getRecommendation: builder.query<Recommendations, number>({
             query: (id) => `/get-recommendation/${id}`,
+            providesTags: ["Recommendations"],
+        }),
+        getUserRecommendations: builder.query<Recommendations[], number>({
+            query: (user_id) => `/get-student-recommendations/${user_id}`,
             providesTags: ["Recommendations"],
         }),
         getRecommendationAttributes: builder.query<RecommendationAttributes[], number>({
