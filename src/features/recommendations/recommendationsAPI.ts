@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Recommendations } from "../../types/types";
+import { RecommendationAttributes, Recommendations } from "../../types/types";
 
 export const recommendationsAPI = createApi({
     reducerPath: "recommendationsAPI",
@@ -14,6 +14,10 @@ export const recommendationsAPI = createApi({
             query: (id) => `/get-recommendation/${id}`,
             providesTags: ["Recommendations"],
         }),
+        getRecommendationAttributes: builder.query<RecommendationAttributes[], number>({
+            query: (user_id) => `/get-recommendation-attributes/${user_id}`,
+            providesTags: ["Recommendations"],
+          }),
         createRecommendation: builder.mutation<Recommendations, Partial<Recommendations>>({
             query: (newRecommendation) => ({
                 url: "/create-recommendations",
