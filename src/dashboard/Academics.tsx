@@ -16,8 +16,8 @@ const StudentAcademics = () => {
   const subjectsList = [
     "English", "Kiswahili", "Mathematics", "Computer Studies", "Chemistry", "Biology",
     "History", "Geography", "Physics", "Art and Design", "Music", "Business Studies",
-    "French", "German", "Agriculture", "Home Science", "CRE", "IRE", "Physical Education",
-    "Technical Drawing", "Building Construction", "Woodwork", "Metalwork", "Electrical Technology",
+    "French", "German", "Agriculture", "Home Science", "CRE", "IRE", 
+    "Technical Drawing", "Building Construction", "Woodwork", "Metalwork",
   ];
   const userId = user?.user_id || 0;
   const [subjects, setSubjects] = useState([{ subject: "", grade: "" }]);
