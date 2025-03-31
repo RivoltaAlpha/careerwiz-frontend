@@ -67,6 +67,10 @@ const Sidebar: React.FC = () => {
             <RiAccountPinCircleFill />
             <Link to="/profile" className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Profile</Link>
           </li>
+          <li className="flex items-center gap-2">
+            <RiHomeHeartFill />
+            <Link to="/" className="hover:underline text-white hover:bg-gray-900 hover:rounded p-2">Home</Link>
+          </li>
         </ul>
 
         {isAuthenticated && (

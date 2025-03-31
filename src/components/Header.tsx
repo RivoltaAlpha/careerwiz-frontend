@@ -1,78 +1,98 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { RootState } from '../app/store';
 
 export const Header = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.userAuth);
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <header className="bg-gray-200 text-cards">
-      <nav className=" mx-auto px-6 py-2 flex flex-wrap justify-between items-center">
+      <nav className="mx-auto px-6 py-2 flex flex-wrap justify-between items-center">
+        {/* Logo */}
         <div className="text-4xl text-cards flex font-bold">
-        {/* <img src="/images/logo.jpg" alt="" className="w-10 h-10 rounded-full" /> */}
-        Career Wiz
+          Career Wiz
         </div>
-        <div className="block lg:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-cards hover:text-black
-             focus:outline-none focus:text-white"
-            title="Toggle Menu"
-          >
-            <svg
-              className="h-6 w-6 fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {isOpen ? (
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M6.293 17.293a1 1 0 011.414 0L12 21.586l4.293-4.293a1 1 0 011.414 1.414L12 24.414l-5.707-5.707a1 1 0 010-1.414zM4 6a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zm0 6a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1z"
-                />
-              ) : (
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M4 6a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zm0 6a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zm1 6a1 1 0 000 2h14a1 1 0 000-2H5z"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-        <div
-          className={`w-full lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}
+
+        {/* Mobile Menu Button */}
+        <button
+        type='button'
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-cards focus:outline-none"
         >
-          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-2">
-            <NavLink to="/" className="text-cards hover:text-black
-             px-3 py-2">
+          {isOpen ? "Close" : "Menu"}
+        </button>
+
+        {/* Navigation Links */}
+        <div
+          className={`w-full lg:flex lg:items-center lg:w-auto ${
+            isOpen ? "block" : "hidden"
+          }`}
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-4">
+            <NavLink to="/" className="text-cards hover:text-black px-3 py-2">
               Home
             </NavLink>
-            <NavLink to="/about-us" className="text-cards hover:text-black
-             px-3 py-2">
+            <NavLink
+              to="/about-us"
+              className="text-cards hover:text-black px-3 py-2"
+            >
               About Us
             </NavLink>
-            <NavLink to="/explore" className="text-cards hover:text-black
-             px-3 py-2">
+            <NavLink
+              to="/explore"
+              className="text-cards hover:text-black px-3 py-2"
+            >
               Explore Careers
             </NavLink>
-            <Link to="/contact" className="text-cards  hover:text-black
-             px-3 py-2">
+            <NavLink
+              to="/contact"
+              className="text-cards hover:text-black px-3 py-2"
+            >
               Contact
-            </Link>
-            <NavLink to="/feedback" className="text-cards hover:text-black
-             px-3 py-2">
-              Feedback 
             </NavLink>
-            <NavLink to="/login" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-3 ml-3 lg:w-20 :w-20 rounded mt-3 lg:mt-0  lg:ml-4 items-center">
-              Login
+            <NavLink
+              to="/feedback"
+              className="text-cards hover:text-black px-3 py-2"
+            >
+              Feedback
             </NavLink>
-            <Link to="/register" className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 lg:w-28 :w-28 rounded mt-3 lg:mt-0  lg:ml-4">
-              Register
-            </Link>
+
+            {/* Show Dashboard if authenticated */}
+            {isAuthenticated && (
+              <NavLink
+                to="/dashboard"
+                className="text-cards hover:text-black px-3 py-2"
+              >
+                Dashboard
+              </NavLink>
+            )}
+
+            {/* Auth Buttons */}
+            {!isAuthenticated ? (
+              <>
+                <NavLink
+                  to="/login"
+                  className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-3 ml-3 rounded"
+                >
+                  Login
+                </NavLink>
+                <Link
+                  to="/register"
+                  className="bg-cards hover:bg-secondary text-white lg:font-bold py-2 px-4 ml-3 rounded"
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/logout"
+                className="bg-red-600 hover:bg-red-700 text-white lg:font-bold py-2 px-4 ml-3 rounded"
+              >
+                Logout
+              </Link>
+            )}
           </div>
         </div>
       </nav>
