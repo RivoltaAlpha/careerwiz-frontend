@@ -48,19 +48,6 @@ const CareerCard: React.FC<CareerCardProps> = ({ career_id, career_name,descript
             <h2 className="text-2xl font-bold mb-2">Career: {career_name}</h2>
             <p className="mt-2  text-black">Description:{description}</p>
             <p className="mt-2  text-black">Requirements: {requirements}</p>
-            <p className="mt-2  text-black">Subjects: {subjects}</p>            
-            <h3 className=" text-black">
-              <span className="font-semibold">Interests: </span>
-              {Array.isArray(interests) && interests.length > 0 ? (
-                interests.map((interest: string, index: number) => (
-                  <span key={index} className="bg-gray-200 text-gray-900 px-2 py-1 rounded-lg text-sm mx-1">
-                    {interest.trim()}
-                  </span>
-                ))
-              ) : (
-                <span className="text-gray-400">No interests specified</span>
-              )}
-            </h3>
             <div className="flex gap-2 items-center justify-center">
               <button
                 type="button"
