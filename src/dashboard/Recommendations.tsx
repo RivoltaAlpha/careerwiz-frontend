@@ -59,7 +59,14 @@ const Recommendations = () => {
       };
 
       try {
-        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData);
+        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData,
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (response.status === 200) {
 
           const studentRecommendations = {
@@ -67,11 +74,7 @@ const Recommendations = () => {
             student_recommendations: response.data,
           };
 
-          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations,
-            {
-              withCredentials: true,
-            }
-          );
+          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations, );
           console.log("Recommendation created:", createResponse.data);
 
           if (createResponse.status === 200) {
