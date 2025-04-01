@@ -67,7 +67,11 @@ const Recommendations = () => {
             student_recommendations: response.data,
           };
 
-          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations);
+          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations,
+            {
+              withCredentials: true,
+            }
+          );
           console.log("Recommendation created:", createResponse.data);
 
           if (createResponse.status === 200) {
