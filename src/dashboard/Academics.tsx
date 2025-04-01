@@ -60,7 +60,7 @@ const getSubjectsToSend = () => {
   const topSubjects = subjects
     .filter((s) => s.subject && s.grade) 
     .sort((a, b) => gradesList.indexOf(a.grade) - gradesList.indexOf(b.grade)) 
-    .slice(0, 5) 
+    .slice(0, 4) 
     .map((s) => s.subject); 
 
   const combinedSubjects = [...topSubjects];
