@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RecommendationAttributes, Recommendations } from "../../types/types";
+import { SERVER_URL } from "../../Utils/utils";
 
 export const recommendationsAPI = createApi({
     reducerPath: "recommendationsAPI",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
+    baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
     tagTypes: ["Recommendations"],
     endpoints: (builder) => ({
         getRecommendation: builder.query<Recommendations, number>({

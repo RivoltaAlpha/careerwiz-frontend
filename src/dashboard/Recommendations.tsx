@@ -7,6 +7,7 @@ import { RootState } from "../app/store";
 import { TUser } from "../types/types";
 import { BiLoader } from "react-icons/bi";
 import axios from "axios";
+import { MODEL_URL, SERVER_URL } from "../Utils/utils";
 
 const Recommendations = () => {
       const user = useSelector((state: RootState) => state.user?.user) as TUser;
@@ -19,7 +20,7 @@ const Recommendations = () => {
       useEffect(() => {
         const fetchRecommendations = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/get-student-recommendations/${userId}`);
+            const response = await axios.get(`${SERVER_URL}/get-student-recommendations/${userId}`);
             const recommendationsData = response.data;
 
             if (recommendationsData && 
@@ -59,7 +60,7 @@ const Recommendations = () => {
       };
 
       try {
-        const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", submitData,
+        const response = await axios.post(`${MODEL_URL}predict_career`, submitData,
           {
             withCredentials: true,
             headers: {
@@ -74,7 +75,7 @@ const Recommendations = () => {
             student_recommendations: response.data,
           };
 
-          const createResponse = await axios.post("http://localhost:8000/create-recommendations", studentRecommendations, );
+          const createResponse = await axios.post(`${MODEL_URL}create-recommendations`, studentRecommendations);
           console.log("Recommendation created:", createResponse.data);
 
           if (createResponse.status === 200) {

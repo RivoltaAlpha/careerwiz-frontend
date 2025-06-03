@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {Feedback} from "../../types/types";
+import { SERVER_URL } from "../../Utils/utils";
 
 export const FeedbackAPI  = createApi({
     reducerPath: "FeedbackAPI",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
+    baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
     tagTypes: ["Feedback"],
     endpoints: (builder) => ({
         getUserFeedback: builder.query<Feedback[], number>({

@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {AcademicHistoryProps, Academics, StudentAcademics, Subjects} from "../../types/types";
+import { SERVER_URL } from "../../Utils/utils";
 
 export const academicsAPI  = createApi({
     reducerPath: "academicsAPI",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
+    baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
     tagTypes: ["Academics"],
     endpoints: (builder) => ({
         getAcademics: builder.query<Academics[], void>({
