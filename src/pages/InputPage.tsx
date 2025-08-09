@@ -55,7 +55,7 @@ const InputPage = () => {
     const payload = { subjects: topSubjects, interests };
 
     try {
-      const response = await axios.post("https://recommendationmodel-fbarbzdsczhqhphb.southafricanorth-01.azurewebsites.net/predict_career", payload);
+      const response = await axios.post("https://careerwiz-ai-d0a0fshfgsfmgwf4.southafricanorth-01.azurewebsites.net/predict_career", payload);
       console.log("Success:", response.data);
       if (response.status === 200) {
         localStorage.setItem("recommendations", JSON.stringify(response.data));
